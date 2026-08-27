@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-
+import type { NewUser } from "../types/user.interface.js";
 
 interface RegisterUserData {
   userName: string;
@@ -11,35 +11,36 @@ interface RegisterUserData {
   adress_delivery:number;
 }
 
-interface AddressData {
-  number: string;
-  street: string;
-  complement?: string;
-  city: string;
-  postalCode: string;
-  type: "main" | "delivery";
-}
 
-interface NewUser {
+
+
+
+interface User {
+  id: number;
   userName: string;
   userLastName: string;
   userEmail: string;
   password: string;
   adress_delivery: number;
+  is_verified: boolean;
 }
+
+
+
+
+
+
+
 
 interface AuthRepository {
-  getUserByEmail(userEmail: string): Promise<unknown>;
+  getUserByEmail(userEmail: string): Promise<User | null>;
   createUser(user: NewUser): Promise<number>;
-  getUserById(userId: number): Promise<unknown>;
-  markUserAsVerified(userId: number): Promise<unknown>;
+  
 }
 
 
 
-interface OrderService {
-  // Ajoute ici les méthodes de ton OrderService
-}
+
 
 interface RegisterUserResponse {
   success: boolean;
@@ -54,7 +55,7 @@ class AuthService {
   constructor(
     authRepository: AuthRepository,
     
-    orderService: OrderService
+   
   ) {
     this.authRepository = authRepository;
    
@@ -136,13 +137,7 @@ class AuthService {
     };
   }
 
-  async findUserById(userId: number): Promise<unknown> {
-    return await this.authRepository.getUserById(userId);
-  }
-
-  async markUserAsVerified(userId: number): Promise<unknown> {
-    return await this.authRepository.markUserAsVerified(userId);
-  }
+ 
 }
 
 export default AuthService;
