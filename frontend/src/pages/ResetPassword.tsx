@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import WorldClock from "../components/WorldClock";
+import LanguageSelector from "../components/LanguageSelector";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
@@ -46,13 +48,13 @@ export default function ResetPassword() {
 
   const pageStyle: React.CSSProperties = {
     display: "flex",
-    minHeight: "100vh",
+    height: "100vh",
+    overflow: "hidden",
   };
 
   const sidebarStyle: React.CSSProperties = {
-    width: "55px",
+    width: "80px",
     background: "#2B3A8F",
-    minHeight: "100vh",
     flexShrink: 0,
   };
 
@@ -105,7 +107,7 @@ export default function ResetPassword() {
           style={{
             position: "absolute",
             top: "-10%",
-            right: "-25%",
+            right: "-5%",
             height: "170vh",
             width: "auto",
             maxWidth: "none",
@@ -255,6 +257,9 @@ export default function ResetPassword() {
             </form>
           </div>
         </div>
+
+        <WorldClock />
+        <LanguageSelector />
       </div>
     </div>
   );

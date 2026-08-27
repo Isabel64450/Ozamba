@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import WorldClock from "../components/WorldClock";
+import LanguageSelector from "../components/LanguageSelector";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -28,13 +30,13 @@ export default function ForgotPassword() {
 
   const pageStyle: React.CSSProperties = {
     display: "flex",
-    minHeight: "100vh",
+    height: "100vh",
+    overflow: "hidden",
   };
 
   const sidebarStyle: React.CSSProperties = {
-    width: "55px",
+    width: "80px",
     background: "#2B3A8F",
-    minHeight: "100vh",
     flexShrink: 0,
   };
 
@@ -68,7 +70,7 @@ export default function ForgotPassword() {
             style={{
               position: "absolute",
               top: "-10%",
-              right: "-25%",
+              right: "-5%",
               height: "170vh",
               width: "auto",
               maxWidth: "none",
@@ -87,6 +89,7 @@ export default function ForgotPassword() {
               Email sent !
             </p>
           </div>
+          <WorldClock />
         </div>
       </div>
     );
@@ -94,19 +97,16 @@ export default function ForgotPassword() {
 
   return (
     <div style={pageStyle}>
-      {/* Barre latérale fine */}
       <div style={sidebarStyle} />
 
-      {/* Contenu principal avec pattern en fond */}
       <div style={mainStyle}>
-
         <img
           src="/frameFond.png"
           alt=""
           style={{
             position: "absolute",
             top: "-10%",
-            right: "-25%",
+            right: "-5%",
             height: "170vh",
             width: "auto",
             maxWidth: "none",
@@ -139,22 +139,18 @@ export default function ForgotPassword() {
         {/* Carte formulaire centrée */}
         <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }}>
           <div style={cardStyle}>
-            {/* Logo */}
             <img src="/ozamba-logo.png" alt="Ozamba" style={{ height: "60px", marginBottom: "20px" }} />
 
-            {/* Titre */}
             <h1 style={{ color: "#2B3A8F", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
               FORGOT YOUR
               <br />
               PASSWORD?
             </h1>
 
-            {/* Sous-titre */}
             <p style={{ color: "#CC0000", fontSize: "14px", margin: "0 0 24px" }}>
               Confirm your email and we'll send the instructions
             </p>
 
-            {/* Formulaire */}
             <form onSubmit={handleSubmit} noValidate>
               <div style={{ position: "relative", marginBottom: "12px" }}>
                 <span
@@ -212,6 +208,9 @@ export default function ForgotPassword() {
             </form>
           </div>
         </div>
+
+        <WorldClock />
+        <LanguageSelector />
       </div>
     </div>
   );
