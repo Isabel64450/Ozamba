@@ -61,52 +61,31 @@ export default function ForgotPassword() {
     return (
       <div style={pageStyle}>
         <div style={sidebarStyle} />
-        <div
-          style={{
-            ...mainStyle,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div style={cardStyle}>
-            <img
-              src="/ozamba-logo.png"
-              alt="Ozamba"
-              style={{ height: "60px", marginBottom: "20px" }}
-            />
-            <h1
-              style={{
-                color: "#2B3A8F",
-                fontSize: "26px",
-                fontWeight: 800,
-                margin: "0 0 16px",
-                lineHeight: 1.2,
-              }}
-            >
-              EMAIL SENT !
+        <div style={{ ...mainStyle, alignItems: "center", justifyContent: "center" }}>
+          <img
+            src="/frameFond.png"
+            alt=""
+            style={{
+              position: "absolute",
+              top: "-10%",
+              right: "-25%",
+              height: "170vh",
+              width: "auto",
+              maxWidth: "none",
+              pointerEvents: "none",
+              zIndex: 0,
+            }}
+          />
+          <div style={{ ...cardStyle, position: "relative", zIndex: 1 }}>
+            <img src="/ozamba-logo.png" alt="Ozamba" style={{ height: "60px", marginBottom: "20px" }} />
+            <h1 style={{ color: "#2B3A8F", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
+              FORGOT YOUR
+              <br />
+              PASSWORD?
             </h1>
-            <p
-              style={{ color: "#CC0000", fontSize: "14px", margin: "0 0 24px" }}
-            >
-              Si cette adresse existe, un lien de réinitialisation a été envoyé.
+            <p style={{ color: "#CC0000", fontSize: "14px", margin: 0 }}>
+              Email sent !
             </p>
-            <button
-              onClick={() => navigate("/login")}
-              style={{
-                width: "100%",
-                background: "#2B3A8F",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                padding: "13px",
-                fontSize: "14px",
-                fontWeight: 700,
-                cursor: "pointer",
-                letterSpacing: "1px",
-              }}
-            >
-              RETOUR À LA CONNEXION
-            </button>
           </div>
         </div>
       </div>
@@ -120,7 +99,7 @@ export default function ForgotPassword() {
 
       {/* Contenu principal avec pattern en fond */}
       <div style={mainStyle}>
-        {/* Pattern uniquement sur la droite */}
+
         <img
           src="/frameFond.png"
           alt=""
@@ -158,43 +137,20 @@ export default function ForgotPassword() {
         </div>
 
         {/* Carte formulaire centrée */}
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
+        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }}>
           <div style={cardStyle}>
             {/* Logo */}
-            <img
-              src="/ozamba-logo.png"
-              alt="Ozamba"
-              style={{ height: "60px", marginBottom: "20px" }}
-            />
+            <img src="/ozamba-logo.png" alt="Ozamba" style={{ height: "60px", marginBottom: "20px" }} />
 
             {/* Titre */}
-            <h1
-              style={{
-                color: "#2B3A8F",
-                fontSize: "26px",
-                fontWeight: 800,
-                margin: "0 0 16px",
-                lineHeight: 1.2,
-              }}
-            >
+            <h1 style={{ color: "#2B3A8F", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
               FORGOT YOUR
               <br />
               PASSWORD?
             </h1>
 
             {/* Sous-titre */}
-            <p
-              style={{ color: "#CC0000", fontSize: "14px", margin: "0 0 24px" }}
-            >
+            <p style={{ color: "#CC0000", fontSize: "14px", margin: "0 0 24px" }}>
               Confirm your email and we'll send the instructions
             </p>
 
@@ -231,14 +187,7 @@ export default function ForgotPassword() {
                 />
               </div>
               {emailError && (
-                <p
-                  style={{
-                    color: "#CC0000",
-                    fontSize: "13px",
-                    margin: "0 0 12px",
-                    textAlign: "left",
-                  }}
-                >
+                <p style={{ color: "#CC0000", fontSize: "13px", margin: "0 0 12px", textAlign: "left" }}>
                   {emailError}
                 </p>
               )}
