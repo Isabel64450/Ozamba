@@ -118,23 +118,12 @@ export default function ResetPassword() {
 
         {/* Bouton BACK */}
         <div style={{ padding: "20px 24px", position: "relative", zIndex: 1 }}>
-          <button
+          <img
+            src="/back-button.svg"
+            alt="Back"
             onClick={() => navigate("/login")}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-              color: "#CC0000",
-              fontWeight: 700,
-              fontSize: "14px",
-              letterSpacing: "1px",
-            }}
-          >
-            ‹ BACK
-          </button>
+            style={{ cursor: "pointer", height: "52px" }}
+          />
         </div>
 
         {/* Carte formulaire centrée */}
