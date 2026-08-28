@@ -63,7 +63,7 @@ export default function ForgotPassword() {
     return (
       <div style={pageStyle}>
         <div style={sidebarStyle} />
-        <div style={{ ...mainStyle, alignItems: "center", justifyContent: "center" }}>
+        <div style={{ ...mainStyle }}>
           <img
             src="/frameFond.png"
             alt=""
@@ -78,6 +78,15 @@ export default function ForgotPassword() {
               zIndex: 0,
             }}
           />
+          <div style={{ padding: "20px 24px", position: "relative", zIndex: 1 }}>
+            <img
+              src="/back-button.svg"
+              alt="Back"
+              onClick={() => navigate("/login")}
+              style={{ cursor: "pointer", height: "52px" }}
+            />
+          </div>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }}>
           <div style={{ ...cardStyle, position: "relative", zIndex: 1 }}>
             <img src="/ozamba-logo.png" alt="Ozamba" style={{ height: "60px", marginBottom: "20px" }} />
             <h1 style={{ color: "#2B3A8F", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
@@ -88,6 +97,7 @@ export default function ForgotPassword() {
             <p style={{ color: "#CC0000", fontSize: "14px", margin: 0 }}>
               Email sent !
             </p>
+          </div>
           </div>
           <WorldClock />
         </div>
@@ -117,23 +127,12 @@ export default function ForgotPassword() {
 
         {/* Bouton BACK */}
         <div style={{ padding: "20px 24px", position: "relative", zIndex: 1 }}>
-          <button
+          <img
+            src="/back-button.svg"
+            alt="Back"
             onClick={() => navigate("/login")}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-              color: "#CC0000",
-              fontWeight: 700,
-              fontSize: "14px",
-              letterSpacing: "1px",
-            }}
-          >
-            ‹ BACK
-          </button>
+            style={{ cursor: "pointer", height: "52px" }}
+          />
         </div>
 
         {/* Carte formulaire centrée */}
