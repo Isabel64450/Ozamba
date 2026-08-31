@@ -7,30 +7,54 @@ import type { Pool, ResultSetHeader } from "mysql2/promise";
 class AuthRepository {
   constructor(private pool: Pool) {}
 
-  async createUser(userData: NewUser): Promise<number> {
+   async createUser(userData: NewUser): Promise<number> {
     const {
-      
       userName,
-      userLastName,
-      userEmail,
-      adress_delivery,
+      lastName,
+      name,
+      email,
+      birthDate,
+      phoneNumber,
+      facebook,
+      twitter,
+      tiktok,
+      job,
+      category,
       password,
     } = userData;
 
     try {
-      // On hash le mot de passe avant de l'enregistrer
+      // Hash du mot de passe avant l'enregistrement
       const hashedPassword = await argon2.hash(password);
 
       const [result] = await this.pool.query<ResultSetHeader>(
-        `INSERT INTO users 
-          (customer_id, userName, userLastName, userEmail, adress_delivery, password)
-         VALUES (?, ?, ?, ?, ?, ?)`,
-        [
-         
+        `INSERT INTO users (
           userName,
-          userLastName,
-          userEmail,
-          adress_delivery,
+          lastName,
+          name,
+          email,
+          birthDate,
+          phoneNumber,
+          facebook,
+          twitter,
+          tiktok,
+          job,
+          category,
+          password
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          userName,
+          lastName,
+          name,
+          email,
+          birthDate ?? null,
+          phoneNumber ?? null,
+          facebook ?? null,
+          twitter ?? null,
+          tiktok ?? null,
+          job ?? null,
+          category ?? null,
           hashedPassword,
         ]
       );
@@ -48,15 +72,26 @@ class AuthRepository {
     }
   }
 
-
-
-  async getUserByEmail(userEmail: string): Promise<User | null> {
+  
+  async getUserByEmail(email: string): Promise<User | null> {
     const [rows] = await this.pool.query<User[]>(
-      `SELECT * FROM users WHERE userEmail = ? LIMIT 1`,
-      [userEmail]
+      `SELECT * FROM users WHERE email = ? LIMIT 1`,
+      [email]
     );
 
-    return  rows[0] ?? null;
+    return rows[0] ?? null;
+  }
+
+  /**
+   * Récupérer un utilisateur par son ID
+   */
+  async getUserById(id: number): Promise<User | null> {
+    const [rows] = await this.pool.query<User[]>(
+      `SELECT * FROM users WHERE id = ? LIMIT 1`,
+      [id]
+    );
+
+    return rows[0] ?? null;
   }
 }
 

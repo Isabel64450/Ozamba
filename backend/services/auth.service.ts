@@ -1,33 +1,7 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import type { NewUser } from "../types/user.interface.js";
-
-interface RegisterUserData {
-  userName: string;
-  userLastName: string;
-  userEmail: string;
-  password: string;
-  confirmPassword: string;
-  adress_delivery:number;
-}
-
-
-
-
-
-interface User {
-  id: number;
-  userName: string;
-  userLastName: string;
-  userEmail: string;
-  password: string;
-  adress_delivery: number;
-  is_verified: boolean;
-}
-
-
-
-
+import type { NewUser, User } from "../types/user.interface.js";
+import type { RegisterUserData, RegisterUserResponse } from "../types/auth.interface.js";
 
 
 
@@ -41,11 +15,6 @@ interface AuthRepository {
 
 
 
-
-interface RegisterUserResponse {
-  success: boolean;
-  message: string;
-}
 
 class AuthService {
   private authRepository: AuthRepository;
@@ -66,16 +35,23 @@ class AuthService {
     userData: RegisterUserData
   ): Promise<RegisterUserResponse> {
     const {
-      userName,
-      userLastName,
-      userEmail,
+       userName,
+      lastName,
+      name,
+      email,
       password,
       confirmPassword,
-      adress_delivery,
+      birthDate,
+      phoneNumber,
+      facebook,
+      twitter,
+      tiktok,
+      job,
+      category,
     } = userData;
 
     const existingUser =
-      await this.authRepository.getUserByEmail(userEmail);
+      await this.authRepository.getUserByEmail(email);
 
     if (existingUser) {
       throw new Error("L'utilisateur existe déjà");
@@ -85,19 +61,26 @@ class AuthService {
       throw new Error("Les mots de passe doivent être identiques");
     }
 
-    const hashedPassword = await argon2.hash(password);
-
-    
-
+   
 
 
 
     const newUser: NewUser = {
       userName,
-      userLastName,
-      userEmail,
-      password: hashedPassword,
-      adress_delivery,
+      lastName,
+      name,
+      email,
+      password,
+
+      birthDate: birthDate ?? null,
+      phoneNumber: phoneNumber ?? null,
+
+      facebook: facebook ?? null,
+      twitter: twitter ?? null,
+      tiktok: tiktok ?? null,
+
+      job: job ?? null,
+      category: category ?? null,
     };
 
     const userId =
