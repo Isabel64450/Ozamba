@@ -42,6 +42,7 @@ class AuthService {
       password,
       confirmPassword,
       birthDate,
+      address,
       phoneNumber,
       facebook,
       twitter,
@@ -73,6 +74,7 @@ class AuthService {
       password,
 
       birthDate: birthDate ?? null,
+      address,
       phoneNumber: phoneNumber ?? null,
 
       facebook: facebook ?? null,

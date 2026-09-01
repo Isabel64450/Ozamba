@@ -14,6 +14,7 @@ class AuthRepository {
       name,
       email,
       birthDate,
+      address,
       phoneNumber,
       facebook,
       twitter,
@@ -34,6 +35,7 @@ class AuthRepository {
           name,
           email,
           birthDate,
+          address,
           phoneNumber,
           facebook,
           twitter,
@@ -42,13 +44,14 @@ class AuthRepository {
           category,
           password
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           userName,
           lastName,
           name,
           email,
           birthDate ?? null,
+          address,
           phoneNumber ?? null,
           facebook ?? null,
           twitter ?? null,

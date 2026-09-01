@@ -8,6 +8,7 @@ export interface RegisterUserData {
   confirmPassword: string;
 
   birthDate: string | null;
+  address:string;
   phoneNumber: string | null;
 
   facebook: string | null;

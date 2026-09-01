@@ -32,6 +32,7 @@ class AuthController {
         password,
         confirmPassword,
         birthDate,
+        address,
         phoneNumber,
         facebook,
         twitter,
@@ -73,6 +74,7 @@ class AuthController {
         confirmPassword,
 
         birthDate,
+        address,
         phoneNumber,
 
         facebook,
