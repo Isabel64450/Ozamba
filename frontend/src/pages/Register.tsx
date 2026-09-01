@@ -4,6 +4,7 @@ import api from "../api/axios"
 import axios from "axios";
 import WorldClock from "../components/WorldClock";
 import LanguageSelector from "../components/LanguageSelector";
+import { UserRound } from "lucide-react";
 
 import "../styles/Register.css";
 
@@ -120,7 +121,11 @@ export default function Register() {
 
         {/* Photo de profil */}
         <div className="profile-picture">
-          <span>+</span>
+            <div className="profile-picture-circle">
+                 <UserRound className="profile-picture-icon" size={48} strokeWidth={1.8}  />
+            </div>
+          
+          <span className="profile-picture-add">+</span>
         </div>
 
         {/* Welcome */}
