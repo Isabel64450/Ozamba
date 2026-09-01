@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-
+import api from "../api/axios"
+import axios from "axios";
 import WorldClock from "../components/WorldClock";
 import LanguageSelector from "../components/LanguageSelector";
 
@@ -12,7 +13,7 @@ interface RegisterFormData {
   name: string;
   email: string;  
   birthDate: string;
-  adress:string;
+  address:string;
   phoneNumber: string;
   facebook: string;
   twitter: string;
@@ -34,7 +35,7 @@ export default function Register() {
     password: "",
     confirmPassword: "",
     birthDate: "",
-    adress:"",
+    address:"",
     phoneNumber: "",
     facebook: "",
     twitter: "",
@@ -84,36 +85,21 @@ export default function Register() {
     }
 
     try {
+       
       setLoading(true);
 
-      const response = await fetch(
-        "http://localhost:3000/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.error || "Erreur lors de l'inscription."
-        );
-      }
-
+      const response = await api.post("/auth/register", formData);      
+      
       setSuccess(true);
     } catch (error: unknown) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Une erreur est survenue."
-      );
-    } finally {
-      setLoading(false);
+     if (axios.isAxiosError(error)) {
+    setError(
+      error.response?.data?.error ??
+      "Erreur lors de l'inscription."
+    );
+  } else {
+    setError("Une erreur est survenue.");
+  }
     }
   };
 
@@ -266,12 +252,12 @@ export default function Register() {
       
 
       <input
-        id="adress"
-        name="adress"
-        type="adress"
-        value={formData.adress}
+        id="address"
+        name="address"
+        type="address"
+        value={formData.address}
         onChange={handleChange}
-        placeholder="Write your adress here"
+        placeholder="Write your address here"
       />
     </div>
   </div>
