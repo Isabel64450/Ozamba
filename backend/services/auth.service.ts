@@ -1,18 +1,17 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import type { JwtPayload } from "jsonwebtoken";
 import type { NewUser, User } from "../types/user.interface.js";
 import type { RegisterUserData, RegisterUserResponse } from "../types/auth.interface.js";
 import sendEmail from "../tools.auth/sendEmail.js"
+import type { AuthRepository } from "../types/auth.repository.interface.js";
 
 
 
-interface AuthRepository {
-  getUserByEmail(userEmail: string): Promise<User | null>;
-  createUser(user: NewUser): Promise<number>;
-  
+
+interface VerificationTokenPayload extends JwtPayload {
+  id: number;
 }
-
-
 
 
 
@@ -133,6 +132,78 @@ catch(emailError)
         "Utilisateur créé avec succès. Vérifiez votre email.",
     };
   }
+
+
+ async verifyEmail(token: string) {
+    const secret = process.env.JWT_SECRET;
+
+    if (!secret) {
+      throw new Error("JWT_SECRET n'est pas configuré");
+    }
+
+    let decoded: VerificationTokenPayload;
+
+    try {
+      decoded = jwt.verify(
+        token,
+        secret
+      ) as VerificationTokenPayload;
+    } catch (error) {
+
+      if (error instanceof jwt.TokenExpiredError) {
+        throw new Error("TOKEN_EXPIRED");
+      }
+
+      if (error instanceof jwt.JsonWebTokenError) {
+        throw new Error("INVALID_TOKEN");
+      }
+
+      throw error;
+    }
+
+    if (!decoded.id) {
+      throw new Error("INVALID_TOKEN");
+    }
+
+    const user = await this.authRepository.getUserById(
+      decoded.id
+    );
+
+    if (!user) {
+      throw new Error("USER_NOT_FOUND");
+    }
+
+    if (user.isVerified === true) {
+      return {
+        alreadyVerified: true,
+      };
+    }
+
+    await this.authRepository.markUserAsVerified(
+      user.id
+    );
+
+    return {
+      alreadyVerified: false,
+    };
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
 }

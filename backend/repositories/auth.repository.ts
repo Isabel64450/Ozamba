@@ -96,6 +96,42 @@ class AuthRepository {
 
     return rows[0] ?? null;
   }
+
+
+ 
+
+  async markUserAsVerified(id: number): Promise<void> {
+    console.log("ID à vérifier :", id);
+    const [result]= await this.pool.query(
+      `
+      UPDATE users
+      SET isVerified = 1
+      WHERE id = ?
+      `,
+      [id]
+    );
+     console.log("Résultat UPDATE :", result);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 export default AuthRepository;
