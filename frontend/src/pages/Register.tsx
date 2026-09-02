@@ -89,9 +89,10 @@ export default function Register() {
        
       setLoading(true);
 
-      const response = await api.post("/auth/register", formData);      
+       await api.post("/auth/register", formData);      
       
       setSuccess(true);
+      setTimeout(() => { navigate("/login"); }, 3000);
     } catch (error: unknown) {
      if (axios.isAxiosError(error)) {
     setError(
