@@ -127,13 +127,14 @@
 
   color: #2B3A8F;
 
-  font-family: "Myriad Pro", Arial, sans-serif;
+  font-family: "Myriad Pro",  sans-serif;
 
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 30px;
+  font-weight: 700;
 
-  line-height: 1.2;
-
+  line-height: 93%;
+  transform: scaleX(0.85);
+  transform-origin: center;
   letter-spacing: 0;
 }
 
@@ -224,7 +225,7 @@
 
   border: 1px solid #2B3A8F;
 
-  border-radius: 8px;
+  border-radius: 12px;
 
   background-color: white;
 
@@ -316,7 +317,7 @@
 
   border: none;
 
-  border-radius: 8px;
+  border-radius: 12px;
 
   background-color: #2B3A8F;
 

@@ -45,7 +45,7 @@ export default function Login() {
                                                
                                                <form className="login-form" onSubmit={handleSubmit} noValidate > 
                                                 <div className="login-field"> 
-                                                    <label htmlFor="email"> USERNAME/EMAIL </label> 
+                                                    <label htmlFor="email"> EMAIL </label> 
                                                     <div className="login-input-wrapper"> 
                                                         <span className="login-input-icon"> @ </span>
                                                          <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Write your email here ..." className={emailError ? "input-error" : ""} /> 
@@ -62,8 +62,7 @@ export default function Login() {
                                                 <button type="button" className="login-forgot" onClick={() => navigate("/forgot-password")} > Forgot your password? </button> {/* ERREUR */} {error && ( <p className="login-error login-error-global"> {error} </p> )} {/* BOUTON */} 
                                                 <button type="submit" className="login-submit" disabled={loading} > {loading ? "CONNECTING..." : "LOGIN"} </button> 
                                                 </form> 
-                                                <p className="login-register"> Don't have an account?{" "} 
-                                                <button type="button" onClick={() => navigate("/register")} > Create an account </button> </p>
+                                                
                                                  </div>
                                                  </div> <WorldClock /> <LanguageSelector />
                                                  
