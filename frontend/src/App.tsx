@@ -3,6 +3,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import Register from "./pages/Register";
 import VerifyEmail from './pages/VerifyEmail';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
        <Route path="/register" element={<Register />} />
-       <Route path="/verify-email/:token" element={<VerifyEmail />}
-/>
+       <Route path="/verify-email/:token" element={<VerifyEmail />}/>
+       <Route path="/login" element={<Login />} />
+
     </Routes>
   )
 }
