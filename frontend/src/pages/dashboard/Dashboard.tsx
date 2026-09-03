@@ -15,6 +15,11 @@ const sections: Record<Exclude<Section, null>, SectionConfig> = {
     color: "#D42431",
   },
 
+  creativity: {
+    image: "/yellowDashboard.png",
+    color: "#FFC000",
+  },
+
   house: {
     image: "/greenDashboard.png",
     color: "#20BF55",
@@ -25,10 +30,7 @@ const sections: Record<Exclude<Section, null>, SectionConfig> = {
     color: "#FF6218",
   },
 
-  creativity: {
-    image: "/yellowDashboard.png",
-    color: "#FFC000",
-  },
+ 
 };
 
 

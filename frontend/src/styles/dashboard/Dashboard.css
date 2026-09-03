@@ -160,16 +160,16 @@
 }
 
 .dashboard-house {
-  top: 25%;
-  right: 10%;
+  bottom:  25%;
+  left: 10%;
 }
 
 .dashboard-productions {
   bottom: 25%;
-  left: 10%;
+  right: 10%;
 }
 
 .dashboard-creativity {
-  bottom: 25%;
+  top: 25%;
   right: 10%;
 }
