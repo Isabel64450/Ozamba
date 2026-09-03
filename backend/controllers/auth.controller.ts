@@ -1,11 +1,12 @@
 import type{ Request, Response } from "express";
-import type { RegisterUserData, RegisterUserResponse } from "../types/auth.interface.js";
+import type { LoginUserData, LoginUserResponse, RegisterUserData, RegisterUserResponse } from "../types/auth.interface.js";
 
 
 
 interface AuthService {
   registerUser( data: RegisterUserData): Promise<RegisterUserResponse>;
     verifyEmail(token: string): Promise<{ alreadyVerified: boolean; }>;
+    loginUser(data: LoginUserData):Promise<LoginUserResponse>;
 }
 interface VerifyEmailParams {
   token: string;
@@ -163,6 +164,56 @@ class AuthController {
     }
   }
 
+
+ async loginUser(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+
+    try {
+
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        return res.status(400).json({
+          message: "Email et mot de passe obligatoires",
+        });
+      }
+
+      const result = await this.authService.loginUser({
+        email,
+        password,
+      });
+
+      return res.status(200).json(result);
+
+    } catch (error) {
+
+      if (error instanceof Error) {
+
+        if (error.message === "INVALID_CREDENTIALS") {
+          return res.status(401).json({
+            message: "Email ou mot de passe incorrect",
+          });
+        }
+
+        if (error.message === "EMAIL_NOT_VERIFIED") {
+          return res.status(403).json({
+            message: "Veuillez vérifier votre adresse email avant de vous connecter.",
+          });
+        }
+      }
+
+      console.error(
+        "Erreur lors de la connexion :",
+        error
+      );
+
+      return res.status(500).json({
+        message: "Erreur lors de la connexion",
+      });
+    }
+  }
 
 
 

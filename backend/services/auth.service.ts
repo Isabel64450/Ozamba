@@ -2,7 +2,7 @@ import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import type { JwtPayload } from "jsonwebtoken";
 import type { NewUser, User } from "../types/user.interface.js";
-import type { RegisterUserData, RegisterUserResponse } from "../types/auth.interface.js";
+import type { RegisterUserData, RegisterUserResponse,LoginUserData,LoginUserResponse } from "../types/auth.interface.js";
 import sendEmail from "../tools.auth/sendEmail.js"
 import type { AuthRepository } from "../types/auth.repository.interface.js";
 
@@ -189,6 +189,61 @@ catch(emailError)
   }
 
 
+   async loginUser(
+    loginData: LoginUserData
+  ): Promise<LoginUserResponse> {
+
+    const { email, password } = loginData;
+
+    const user = await this.authRepository.getUserByEmail(email);
+
+    if (!user) {
+      throw new Error("INVALID_CREDENTIALS");
+    }
+
+    const passwordIsValid = await argon2.verify(
+      user.password,
+      password
+    );
+
+    if (!passwordIsValid) {
+      throw new Error("INVALID_CREDENTIALS");
+    }
+
+    if (!user.isVerified) {
+      throw new Error("EMAIL_NOT_VERIFIED");
+    }
+
+    const jwtSecret = process.env.JWT_SECRET;
+
+    if (!jwtSecret) {
+      throw new Error("JWT_SECRET n'est pas défini");
+    }
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      },
+      jwtSecret,
+      {
+        expiresIn: "1d",
+      }
+    );
+
+    return {
+      success: true,
+      message: "Connexion réussie",
+      token,
+      user: {
+        id: user.id,
+        userName: user.userName,
+        email: user.email,
+        role: user.role,
+      },
+    };
+  }
 
 
 
