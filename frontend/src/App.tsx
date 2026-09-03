@@ -4,6 +4,7 @@ import ResetPassword from './pages/ResetPassword'
 import Register from "./pages/Register";
 import VerifyEmail from './pages/VerifyEmail';
 import Login from './pages/Login';
+import Dashboard from './pages/dashboard/Dashboard';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
        <Route path="/register" element={<Register />} />
        <Route path="/verify-email/:token" element={<VerifyEmail />}/>
        <Route path="/login" element={<Login />} />
+
+
+        <Route path="/" element={<Dashboard />} />
 
     </Routes>
   )

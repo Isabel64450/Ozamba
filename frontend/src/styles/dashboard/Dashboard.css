@@ -1,0 +1,175 @@
+.dashboard {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.dashboard-logo {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+
+  width: 100px;
+  height: auto;
+}
+
+/* =========================
+   CENTRE
+========================= */
+
+.dashboard-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.dashboard-visual {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-visual::before {
+  content: "";
+
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  border-radius: 50%;
+
+  background:
+     radial-gradient(
+    circle at 25% 35%,
+    rgba(80, 220, 140, 0.55),
+    transparent 55%
+  ),
+  radial-gradient(
+    circle at 70% 35%,
+    rgba(0, 166, 252, 0.55),
+    transparent 55%
+  ),
+  radial-gradient(
+    circle at 50% 75%,
+    rgba(130, 70, 255, 0.50),
+    transparent 55%
+  );
+
+  filter: blur(60px);
+
+  z-index: 0;
+
+  pointer-events: none;
+}
+
+
+
+
+.dashboard-image {
+  width: 500px;
+  max-width: 35vw;
+  height: auto;
+  object-fit: contain;
+}
+
+.dashboard-title {
+   position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  margin: 0;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 90px;
+  letter-spacing: 0.88em;
+  text-transform: capitalize;
+
+  color: #860F98;
+
+  white-space: nowrap;
+  text-align: center;
+
+  z-index: 2;
+}
+.dashboard-title-hover {
+    opacity: 0.3;
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.dashboard-link {
+  position: absolute;
+
+  font-family: "Lovelo", sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 90px;
+  letter-spacing: 0;
+
+  text-transform: capitalize;
+  text-decoration: none;
+
+  color: #EDEDED;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.dashboard-link:hover {
+  color: #00A6FC;
+  transform: scale(1.08);
+}
+
+/* =========================
+   POSITIONS
+========================= */
+
+.dashboard-sports {
+  top: 25%;
+  left: 10%;
+}
+
+.dashboard-house {
+  top: 25%;
+  right: 10%;
+}
+
+.dashboard-productions {
+  bottom: 25%;
+  left: 10%;
+}
+
+.dashboard-creativity {
+  bottom: 25%;
+  right: 10%;
+}
