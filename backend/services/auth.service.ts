@@ -9,7 +9,9 @@ import type { RegisterUserData, RegisterUserResponse } from "../types/auth.inter
 interface AuthRepository {
   getUserByEmail(userEmail: string): Promise<User | null>;
   createUser(user: NewUser): Promise<number>;
-  
+  saveResetToken(email: string, token: string, expire: Date): Promise<void>;
+  getUserByResetToken(token: string): Promise<User | null>;
+  updatePassword(userId: number, hashedPassword: string): Promise<void>;
 }
 
 
@@ -120,6 +122,40 @@ class AuthService {
     };
   }
 
+  async forgotPassword(email: string): Promise<{ success: boolean; message: string }> {
+  
+  const user = await this.authRepository.getUserByEmail(email);
+  if (!user) {
+    
+    return { success: true, message: "If this email exists, a link has been sent to you." };
+  }
+
+  const token = crypto.randomUUID();
+
+  const expire = new Date(Date.now() + 60 * 60 * 1000);
+
+  await this.authRepository.saveResetToken(email, token, expire);
+
+  return { success: true, message: "If this email exists, a link has been sent to you." };
+}
+
+async resetPassword(token: string, password: string, confirmPassword: string): Promise<{ success: boolean; message: string }> {
+  
+  if (password !== confirmPassword) {
+    throw new Error("Passwords must be identical");
+  }
+
+  const user = await this.authRepository.getUserByResetToken(token);
+  if (!user) {
+    throw new Error("Invalid or expired token");
+  }
+
+  const hashedPassword = await argon2.hash(password);
+
+  await this.authRepository.updatePassword(user.id, hashedPassword);
+
+  return { success: true, message: "Password successfully reset." };
+}
  
 }
 

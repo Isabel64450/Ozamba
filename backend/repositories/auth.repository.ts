@@ -1,13 +1,11 @@
 import argon2 from "argon2";
-import type{NewUser, User} from '../types/user.interface.js'
+import type { NewUser, User } from "../types/user.interface.js";
 import type { Pool, ResultSetHeader } from "mysql2/promise";
-
-
 
 class AuthRepository {
   constructor(private pool: Pool) {}
 
-   async createUser(userData: NewUser): Promise<number> {
+  async createUser(userData: NewUser): Promise<number> {
     const {
       userName,
       lastName,
@@ -56,27 +54,23 @@ class AuthRepository {
           job ?? null,
           category ?? null,
           hashedPassword,
-        ]
+        ],
       );
 
       return result.insertId;
     } catch (err: unknown) {
       if (err instanceof Error) {
-        console.error(
-          "Erreur dans AuthRepository.createUser :",
-          err.message
-        );
+        console.error("Erreur dans AuthRepository.createUser :", err.message);
       }
 
       throw new Error("Erreur lors de l'insertion de l'utilisateur");
     }
   }
 
-  
   async getUserByEmail(email: string): Promise<User | null> {
     const [rows] = await this.pool.query<User[]>(
       `SELECT * FROM users WHERE email = ? LIMIT 1`,
-      [email]
+      [email],
     );
 
     return rows[0] ?? null;
@@ -88,11 +82,46 @@ class AuthRepository {
   async getUserById(id: number): Promise<User | null> {
     const [rows] = await this.pool.query<User[]>(
       `SELECT * FROM users WHERE id = ? LIMIT 1`,
-      [id]
+      [id],
     );
 
     return rows[0] ?? null;
   }
+
+  async saveResetToken(
+    email: string,
+    token: string,
+    expire: Date,
+  ): Promise<void> {
+    await this.pool.query(
+      `UPDATE users 
+     SET resetPasswordToken = ?, resetPasswordExpire = ? 
+     WHERE email = ?`,
+      [token, expire, email],
+    );
+  }
+
+  async getUserByResetToken(token: string): Promise<User | null> {
+    const [rows] = await this.pool.query<User[]>(
+      `SELECT * FROM users 
+     WHERE resetPasswordToken = ? 
+     AND resetPasswordExpire > NOW() 
+     LIMIT 1`,
+      [token],
+    );
+
+    return rows[0] ?? null;
+  }
+
+  async updatePassword(userId: number, hashedPassword: string): Promise<void> {
+  await this.pool.query(
+    `UPDATE users 
+     SET password = ?, resetPasswordToken = NULL, resetPasswordExpire = NULL 
+     WHERE id = ?`,
+    [hashedPassword, userId]
+  );
+}
+
 }
 
 export default AuthRepository;
