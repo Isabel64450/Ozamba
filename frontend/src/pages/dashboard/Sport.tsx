@@ -21,7 +21,7 @@ export default function Sports() {
          <img src="/frameFond.png" alt="" className="login-background" /> 
         <h1 className="sports-title-main">
           <span className="title-white">WELCOME TO</span>
-          <br />
+          
           <span className="title-red">OZAMBA SPORTS</span>
         </h1>
        

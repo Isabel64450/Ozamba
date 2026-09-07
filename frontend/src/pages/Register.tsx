@@ -433,7 +433,7 @@ export default function Register() {
 
           {success && (
             <p className="register-success">
-              Compte créé avec succès. Vérifiez votre email.
+              Account created successfully. Please check your email.
             </p>
           )}
 
