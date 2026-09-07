@@ -66,12 +66,12 @@ class AuthRepository {
     } catch (err: unknown) {
       if (err instanceof Error) {
         console.error(
-          "Erreur dans AuthRepository.createUser :",
+          "Erreur in AuthRepository.createUser :",
           err.message
         );
       }
 
-      throw new Error("Erreur lors de l'insertion de l'utilisateur");
+      throw new Error("Error inserting user.");
     }
   }
 

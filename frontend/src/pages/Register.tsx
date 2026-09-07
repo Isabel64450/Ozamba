@@ -76,12 +76,12 @@ export default function Register() {
       !formData.password ||
       !formData.confirmPassword
     ) {
-      setError("Veuillez remplir tous les champs obligatoires.");
+      setError("Please fill in all required fields.");
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Les mots de passe doivent être identiques.");
+      setError("Passwords must match.");
       return;
     }
 
@@ -97,10 +97,10 @@ export default function Register() {
      if (axios.isAxiosError(error)) {
     setError(
       error.response?.data?.error ??
-      "Erreur lors de l'inscription."
+      "Registration failed."
     );
   } else {
-    setError("Une erreur est survenue.");
+    setError("An error occurred.");
   }
     }
   };

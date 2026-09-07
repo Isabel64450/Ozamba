@@ -54,11 +54,11 @@ class AuthService {
       await this.authRepository.getUserByEmail(email);
 
     if (existingUser) {
-      throw new Error("L'utilisateur existe déjà");
+      throw new Error("User already exists.");
     }
 
     if (password !== confirmPassword) {
-      throw new Error("Les mots de passe doivent être identiques");
+      throw new Error("Passwords must match");
     }
 
    
@@ -116,20 +116,20 @@ class AuthService {
 await sendEmail.sendMail({
   from: process.env.GMAIL_USER,
   to: email,
-  subject: 'Verification de votre compte Ozamba',
-  html: `<div style=" font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 30px; color: #333333; background-color: #ffffff; "> <div style="text-align: center; margin-bottom: 30px;"> <h1 style=" color: #2F4798; margin: 0; font-size: 28px; "> Bienvenue sur Ozamba </h1> </div> <p style="font-size: 16px; line-height: 1.6;"> Bonjour <strong>${userName}</strong>, </p> <p style="font-size: 16px; line-height: 1.6;"> Merci d’avoir créé votre compte Ozamba. Pour finaliser votre inscription et sécuriser votre compte, veuillez confirmer votre adresse e-mail en cliquant sur le bouton ci-dessous. </p> <div style="text-align: center; margin: 35px 0;"> <a href="${verificationUrl}" style=" display: inline-block; padding: 14px 28px; background-color: #2F4798; color: #ffffff; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: bold; " > Vérifier mon adresse e-mail </a> </div> <p style="font-size: 14px; line-height: 1.6; color: #666666;"> Si le bouton ne fonctionne pas, vous pouvez également copier et coller le lien suivant dans votre navigateur : </p> <p style=" font-size: 13px; word-break: break-all; color: #2F4798; "> ${verificationUrl} </p> <p style=" margin-top: 30px; font-size: 14px; line-height: 1.6; color: #666666; "> Pour votre sécurité, si vous n’êtes pas à l’origine de cette inscription, vous pouvez simplement ignorer cet e-mail. </p> <hr style=" border: none; border-top: 1px solid #eeeeee; margin: 35px 0 20px; "> <p style=" text-align: center; font-size: 12px; color: #999999; "> Cet e-mail a été envoyé automatiquement par Ozamba. Merci de ne pas répondre à ce message. </p> </div>`
+  subject: 'Verify your Ozamba account',
+  html: `<div style=" font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 30px; color: #333333; background-color: #ffffff; "> <div style="text-align: center; margin-bottom: 30px;"> <h1 style=" color: #2F4798; margin: 0; font-size: 28px; "> Welcome to Ozamba </h1> </div> <p style="font-size: 16px; line-height: 1.6;"> Hello <strong>${userName}</strong>, </p> <p style="font-size: 16px; line-height: 1.6;">Thank you for creating your Ozamba account. To complete your registration and secure your account, please confirm your email address by clicking the button below.  </p> <div style="text-align: center; margin: 35px 0;"> <a href="${verificationUrl}" style=" display: inline-block; padding: 14px 28px; background-color: #2F4798; color: #ffffff; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: bold; " > Verify my email address </a> </div> <p style="font-size: 14px; line-height: 1.6; color: #666666;"> If the button doesn't work, you can also copy and paste the following link into your browser: </p> <p style=" font-size: 13px; word-break: break-all; color: #2F4798; "> ${verificationUrl} </p> <p style=" margin-top: 30px; font-size: 14px; line-height: 1.6; color: #666666; "> For your security, if you did not create this account, you can simply ignore this email. </p> <hr style=" border: none; border-top: 1px solid #eeeeee; margin: 35px 0 20px; "> <p style=" text-align: center; font-size: 12px; color: #999999; "> This email was sent automatically by Ozamba. Please do not reply to this message. </p> </div>`
 
 })
 
 }
 catch(emailError)
-{console.error('Erreur lors de l’envoi de l’email de vérification :', emailError);}
+{console.error('Error sending verification email:', emailError);}
     
 
     return {
       success: true,
       message:
-        "Utilisateur créé avec succès. Vérifiez votre email.",
+        "Account created successfully. Please check your email.",
     };
   }
 
@@ -138,7 +138,7 @@ catch(emailError)
     const secret = process.env.JWT_SECRET;
 
     if (!secret) {
-      throw new Error("JWT_SECRET n'est pas configuré");
+      throw new Error("JWT_SECRET is not configured");
     }
 
     let decoded: VerificationTokenPayload;
@@ -234,7 +234,7 @@ catch(emailError)
 
     return {
       success: true,
-      message: "Connexion réussie",
+      message: "Login successful",
       token,
       user: {
         id: user.id,

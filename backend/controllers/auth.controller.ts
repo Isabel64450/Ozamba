@@ -53,7 +53,7 @@ class AuthController {
         !confirmPassword
       ) {
         res.status(400).json({
-          error: "Tous les champs obligatoires doivent être remplis.",
+          error: "All required fields must be filled in.",
         });
         return;
       }
@@ -61,7 +61,7 @@ class AuthController {
       // Vérification du mot de passe
       if (password !== confirmPassword) {
         res.status(400).json({
-          message: "Les mots de passe doivent être identiques.",
+          message: "The passwords must match.",
         });
         return;
       }
@@ -90,7 +90,7 @@ class AuthController {
       res.status(201).json({
         success: true,
         message:
-          "Utilisateur créé avec succès. Vérifiez votre email.",
+          "Account created successfully. Please check your email.",
       });
     } catch (error: unknown) {
       console.error("Erreur dans registerUser :", error);
@@ -99,7 +99,7 @@ class AuthController {
         error:
           error instanceof Error
             ? error.message
-            : "Erreur inconnue",
+            : "Unknown error.",
       });
     }
   }
@@ -112,7 +112,7 @@ class AuthController {
 
       if (!token) {
         return res.status(400).json({
-          message: "Token de vérification manquant",
+          message: "Verification token is missing.",
         });
       }
 
@@ -126,7 +126,7 @@ class AuthController {
       }
 
       return res.status(200).json({
-        message: "Votre compte a été vérifié avec succès",
+        message: "Your account has been successfully verified.",
         alreadyVerified: false,
       });
 
@@ -136,30 +136,30 @@ class AuthController {
 
         if (error.message === "TOKEN_EXPIRED") {
           return res.status(400).json({
-            message: "Le lien de vérification a expiré.",
+            message: "The verification link has expired.",
           });
         }
 
         if (error.message === "INVALID_TOKEN") {
           return res.status(400).json({
-            message: "Le lien de vérification est invalide.",
+            message: "The verification link is invalid.",
           });
         }
 
         if (error.message === "USER_NOT_FOUND") {
           return res.status(404).json({
-            message: "Utilisateur non trouvé",
+            message: "User not found.",
           });
         }
       }
 
       console.error(
-        "Erreur lors de la vérification de l'email :",
+        "Error verifying email:",
         error
       );
 
       return res.status(500).json({
-        message: "Erreur lors de la vérification de l'email",
+        message: "Error verifying email:",
       });
     }
   }
@@ -176,7 +176,7 @@ class AuthController {
 
       if (!email || !password) {
         return res.status(400).json({
-          message: "Email et mot de passe obligatoires",
+          message: "Email and password are required",
         });
       }
 
@@ -193,24 +193,24 @@ class AuthController {
 
         if (error.message === "INVALID_CREDENTIALS") {
           return res.status(401).json({
-            message: "Email ou mot de passe incorrect",
+            message: "Invalid email or password",
           });
         }
 
         if (error.message === "EMAIL_NOT_VERIFIED") {
           return res.status(403).json({
-            message: "Veuillez vérifier votre adresse email avant de vous connecter.",
+            message: "“Please verify your email address before signing in.",
           });
         }
       }
 
       console.error(
-        "Erreur lors de la connexion :",
+        "Error signing in:",
         error
       );
 
       return res.status(500).json({
-        message: "Erreur lors de la connexion",
+        message: "Error signing in:",
       });
     }
   }

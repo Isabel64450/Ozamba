@@ -25,7 +25,7 @@ export default function Login() {
         const response = await api.post("/auth/login", { email, password, }); 
         
         
-        localStorage.setItem("token", response.data.token); navigate("/"); } 
+        localStorage.setItem("token", response.data.token); navigate("/dashboard"); } 
         catch (error: unknown) { if (axios.isAxiosError(error)) { setError( error.response?.data?.message ?? error.response?.data?.error ?? "Adresse email ou mot de passe incorrect." ); }
          else { setError("Une erreur est survenue lors de la connexion."); } } 
          finally { setLoading(false); } }; 
