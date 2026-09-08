@@ -6,6 +6,12 @@ import VerifyEmail from './pages/VerifyEmail';
 import Login from './pages/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import Sports from './pages/dashboard/Sport';
+import House  from './pages/dashboard/House';
+import Productions from './pages/dashboard/Productions'
+import Creative from './pages/dashboard/Creativity'
+
+
+
 function App() {
   return (
     <Routes>
@@ -18,7 +24,9 @@ function App() {
 
         <Route path="/" element={<Dashboard />} />
         <Route path="/sports" element={<Sports />} />
-
+        <Route path="/house" element={<House />} />
+        <Route path="/productions" element={<Productions />} />
+        <Route path="/creative" element={<Creative />} />
     </Routes>
   )
 }

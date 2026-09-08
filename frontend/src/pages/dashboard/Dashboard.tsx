@@ -17,7 +17,7 @@ const sections: Record<Exclude<Section, null>, SectionConfig> = {
 
   creativity: {
     image: "/yellowDashboard.png",
-    color: "#FFC000",
+    color: "#FF6218",
   },
 
   house: {
@@ -27,7 +27,7 @@ const sections: Record<Exclude<Section, null>, SectionConfig> = {
 
   productions: {
     image: "/orangeDashboard.png",
-    color: "#FF6218",
+    color: "#FFC000",
   },
 
  
@@ -69,7 +69,7 @@ export default function Dashboard() {
       </Link>
       
        <Link
-        to="/creativity"
+        to="/creative"
         className="dashboard-link dashboard-creativity"
         style={{
           color:

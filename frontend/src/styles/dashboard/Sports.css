@@ -70,13 +70,9 @@
   max-width: 900px;
 }
 
-.sports-title-main span:first-child {
-  color: white;
-}
 
-.sports-title-main span:last-child {
-  color: #D42431;
-}
+
+
 
 .sports-title h1 {
   margin: 0;
@@ -109,9 +105,9 @@
 /* OZAMBA SPORTS */
 
 .title-red {
-  color: #e3212b;
+  color: #e3212b ;
 
-  display: block;
+  display: block ;
 
   padding: 5px 5px 4px 0;
 }
