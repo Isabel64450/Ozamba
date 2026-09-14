@@ -2,6 +2,8 @@ import { Router, type Request, type Response } from "express";
 
 interface AuthController {
   registerUser(req: Request, res: Response): Promise<void>;
+  forgotPassword(req: Request, res: Response): Promise<void>;
+  resetPassword(req: Request, res: Response): Promise<void>;
 }
 
 export function authRouter(authController: AuthController) {
@@ -13,6 +15,20 @@ export function authRouter(authController: AuthController) {
       authController.registerUser(req, res);
     }
   );
+
+  router.post(
+  "/forgot-password",
+  (req: Request, res: Response) => {
+    authController.forgotPassword(req, res);
+  }
+);
+
+router.post(
+  "/reset-password",
+  (req: Request, res: Response) => {
+    authController.resetPassword(req, res);
+  }
+);
 
   return router;
 }

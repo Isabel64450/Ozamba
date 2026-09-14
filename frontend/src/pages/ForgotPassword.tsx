@@ -199,7 +199,7 @@ export default function ForgotPassword() {
                   fontSize: "14px",
                   fontWeight: 700,
                   cursor: "pointer",
-                  letterSpacing: "1px",hello 
+                  letterSpacing: "1px",
                 }}
               >
                 RESET PASSWORD
