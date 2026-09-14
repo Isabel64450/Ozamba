@@ -36,7 +36,7 @@ export default function ForgotPassword() {
 
   const sidebarStyle: React.CSSProperties = {
     width: "80px",
-    background: "#2B3A8F",
+    background: "#2F4798",
     flexShrink: 0,
   };
 
@@ -89,7 +89,7 @@ export default function ForgotPassword() {
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }}>
           <div style={{ ...cardStyle, position: "relative", zIndex: 1 }}>
             <img src="/ozamba-logo.png" alt="Ozamba" style={{ height: "60px", marginBottom: "20px" }} />
-            <h1 style={{ color: "#2B3A8F", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
+            <h1 style={{ color: "#2F4798", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
               FORGOT YOUR
               <br />
               PASSWORD?
@@ -140,13 +140,13 @@ export default function ForgotPassword() {
           <div style={cardStyle}>
             <img src="/ozamba-logo.png" alt="Ozamba" style={{ height: "60px", marginBottom: "20px" }} />
 
-            <h1 style={{ color: "#2B3A8F", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
+            <h1 style={{ color: "#2F4798", fontSize: "26px", fontWeight: 800, margin: "0 0 16px", lineHeight: 1.2 }}>
               FORGOT YOUR
               <br />
               PASSWORD?
             </h1>
 
-            <p style={{ color: "#CC0000", fontSize: "14px", margin: "0 0 24px" }}>
+            <p style={{ color: "#D42431", fontSize: "14px", margin: "0 0 24px" }}>
               Confirm your email and we'll send the instructions
             </p>
 
@@ -172,7 +172,7 @@ export default function ForgotPassword() {
                   style={{
                     width: "100%",
                     padding: "12px 12px 12px 36px",
-                    border: `1px solid ${emailError ? "#CC0000" : "#2B3A8F"}`,
+                    border: `1px solid ${emailError ? "#D42431" : "#2B3A8F"}`,
                     borderRadius: "8px",
                     fontSize: "14px",
                     outline: "none",
@@ -182,7 +182,7 @@ export default function ForgotPassword() {
                 />
               </div>
               {emailError && (
-                <p style={{ color: "#CC0000", fontSize: "13px", margin: "0 0 12px", textAlign: "left" }}>
+                <p style={{ color: "#D42431", fontSize: "13px", margin: "0 0 12px", textAlign: "left" }}>
                   {emailError}
                 </p>
               )}
@@ -191,7 +191,7 @@ export default function ForgotPassword() {
                 type="submit"
                 style={{
                   width: "100%",
-                  background: "#2B3A8F",
+                  background: "#2F4798",
                   color: "white",
                   border: "none",
                   borderRadius: "8px",
