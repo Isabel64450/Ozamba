@@ -141,8 +141,8 @@ export default function ResetPassword() {
               {/* Champ nouveau mot de passe */}
               <div style={{ marginBottom: "8px" }}>
                 <div style={{ position: "relative" }}>
-                  <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", fontSize: "16px" }}>
-                    🔒
+                  <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)" }}>
+                    <svg width="20" height="20" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5001 10.2V13.6C27.3701 13.6 28.9001 15.13 28.9001 17V28.9C28.9001 30.77 27.3701 32.2999 25.5001 32.2999H8.5001C6.6301 32.2999 5.1001 30.77 5.1001 28.9V17C5.1001 15.13 6.6301 13.6 8.5001 13.6V10.2C8.5001 5.50795 12.3081 1.69995 17.0001 1.69995C21.6921 1.69995 25.5001 5.50795 25.5001 10.2ZM13.6001 10.2V13.6H20.4001V10.2C20.4001 8.32995 18.8701 6.79995 17.0001 6.79995C15.1301 6.79995 13.6001 8.32995 13.6001 10.2ZM18.3601 27.625V23.9359C19.5501 23.409 20.4001 22.219 20.4001 20.825C20.4001 18.955 18.8701 17.425 17.0001 17.425C15.1301 17.425 13.6001 18.955 13.6001 20.825C13.6001 22.219 14.4501 23.409 15.6401 23.9359V27.625H18.3601Z" fill="#2F4798"/></svg>
                   </span>
                   <input
                     type="password"
@@ -186,8 +186,8 @@ export default function ResetPassword() {
               {/* Champ confirmation */}
               <div style={{ marginBottom: "8px" }}>
                 <div style={{ position: "relative" }}>
-                  <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", fontSize: "16px" }}>
-                    🔒
+                  <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)" }}>
+                    <svg width="20" height="20" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5001 10.2V13.6C27.3701 13.6 28.9001 15.13 28.9001 17V28.9C28.9001 30.77 27.3701 32.2999 25.5001 32.2999H8.5001C6.6301 32.2999 5.1001 30.77 5.1001 28.9V17C5.1001 15.13 6.6301 13.6 8.5001 13.6V10.2C8.5001 5.50795 12.3081 1.69995 17.0001 1.69995C21.6921 1.69995 25.5001 5.50795 25.5001 10.2ZM13.6001 10.2V13.6H20.4001V10.2C20.4001 8.32995 18.8701 6.79995 17.0001 6.79995C15.1301 6.79995 13.6001 8.32995 13.6001 10.2ZM18.3601 27.625V23.9359C19.5501 23.409 20.4001 22.219 20.4001 20.825C20.4001 18.955 18.8701 17.425 17.0001 17.425C15.1301 17.425 13.6001 18.955 13.6001 20.825C13.6001 22.219 14.4501 23.409 15.6401 23.9359V27.625H18.3601Z" fill="#2F4798"/></svg>
                   </span>
                   <input
                     type="password"
@@ -206,8 +206,8 @@ export default function ResetPassword() {
                     }}
                   />
                   {confirm && confirm === password && (
-                    <span style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", color: "#22c55e", fontSize: "16px" }}>
-                      ✓
+                    <span style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)" }}>
+                      <svg width="24" height="24" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 27.5C21.9037 27.5 27.5 21.9037 27.5 15C27.5 8.09625 21.9037 2.5 15 2.5C8.09625 2.5 2.5 8.09625 2.5 15C2.5 21.9037 8.09625 27.5 15 27.5Z" stroke="#21D51E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M11.25 15L13.75 17.5L18.75 12.5" stroke="#21D51E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </span>
                   )}
                 </div>
@@ -219,12 +219,11 @@ export default function ResetPassword() {
               </div>
 
               {/* Règles mot de passe */}
-              <p style={{ fontSize: "11px", color: "#666", textAlign: "left", margin: "4px 0 20px", lineHeight: 1.6 }}>
-                © MIN 8 CHARACTERS
-                <br />
-                © NUMBER: 0123456789
-                <br />© SPECIAL CHARACTERS: @*?!,?,-
-              </p>
+              <div style={{ fontSize: "11px", color: "#A7B0D0", textAlign: "left", margin: "4px 0 20px", lineHeight: 2, display: "flex", flexDirection: "column", gap: "2px" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_1017_21)"><path d="M6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.5 6L5.5 7L7.5 5" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/></g><defs><clipPath id="clip0_1017_21"><rect width="12" height="12" fill="white"/></clipPath></defs></svg> MAJ</span>
+                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_1017_21)"><path d="M6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.5 6L5.5 7L7.5 5" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/></g><defs><clipPath id="clip0_1017_21"><rect width="12" height="12" fill="white"/></clipPath></defs></svg> NUMBER: 0123456789</span>
+                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_1017_21)"><path d="M6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.5 6L5.5 7L7.5 5" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/></g><defs><clipPath id="clip0_1017_21"><rect width="12" height="12" fill="white"/></clipPath></defs></svg> SPECIAL CHARACTERS: @"('/),?.;*-_</span>
+              </div>
 
               <button
                 type="submit"

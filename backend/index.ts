@@ -1,17 +1,32 @@
 import express from "express";
-import cors from "cors";
+import cors from "cors"
 import dotenv from "dotenv";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { authRouter } from "./routes/auth.router.js";
+import { initDependencies } from "./dependencies/initDependencies.js";
+import getPool from "./config/base.pool.js";
 import type { Request, Response } from "express";
 
-dotenv.config();
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({
+  path: path.resolve(__dirname, "../.env"),
+});
+
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+const pool = getPool();
+app.use(cors({
+  origin:`${process.env.CLIENT_FRONT}`, 
+  credentials: true,            
+}))
 app.use(express.json());
 
-app.get("/", (res: Response) => {
-  res.json({ message: "API is running" });
-});
+const {authController}=initDependencies(pool)
+app.use("/auth", authRouter(authController))
 
 // POST /auth/forgot-password
 app.post('/auth/forgot-password', async (req: Request, res: Response) => {
@@ -50,5 +65,6 @@ app.post('/auth/reset-password', async (req: Request, res: Response) => {
 
 const PORT = Number(process.env.PORT) || 3000;
 app.listen(PORT, () => {
+   
   console.log(`Server running on http://localhost:${PORT}`);
 });
