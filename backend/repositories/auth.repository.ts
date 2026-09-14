@@ -12,6 +12,7 @@ class AuthRepository {
       name,
       email,
       birthDate,
+      address,
       phoneNumber,
       facebook,
       twitter,
@@ -32,6 +33,7 @@ class AuthRepository {
           name,
           email,
           birthDate,
+          address,
           phoneNumber,
           facebook,
           twitter,
@@ -40,13 +42,14 @@ class AuthRepository {
           category,
           password
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           userName,
           lastName,
           name,
           email,
           birthDate ?? null,
+          address,
           phoneNumber ?? null,
           facebook ?? null,
           twitter ?? null,
@@ -60,10 +63,13 @@ class AuthRepository {
       return result.insertId;
     } catch (err: unknown) {
       if (err instanceof Error) {
-        console.error("Erreur dans AuthRepository.createUser :", err.message);
+        console.error(
+          "Erreur in AuthRepository.createUser :",
+          err.message
+        );
       }
 
-      throw new Error("Erreur lors de l'insertion de l'utilisateur");
+      throw new Error("Error inserting user.");
     }
   }
 
@@ -121,6 +127,40 @@ class AuthRepository {
     [hashedPassword, userId]
   );
 }
+
+ 
+
+  async markUserAsVerified(id: number): Promise<void> {
+    console.log("ID à vérifier :", id);
+    const [result]= await this.pool.query(
+      `
+      UPDATE users
+      SET isVerified = 1
+      WHERE id = ?
+      `,
+      [id]
+    );
+     console.log("Résultat UPDATE :", result);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

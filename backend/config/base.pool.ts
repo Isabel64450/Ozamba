@@ -4,7 +4,7 @@ const getEnv = (name: string): string => {
   const value = process.env[name];
 
   if (!value) {
-    throw new Error(`La variable ${name} est manquante dans le fichier .env`);
+    throw new Error(`The variable ${name} is missing from the .env file`);
   }
 
   return value;

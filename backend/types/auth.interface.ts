@@ -8,6 +8,7 @@ export interface RegisterUserData {
   confirmPassword: string;
 
   birthDate: string | null;
+  address:string;
   phoneNumber: string | null;
 
   facebook: string | null;
@@ -41,4 +42,21 @@ export interface ResetPasswordData {
 export interface ResetPasswordResponse {
   success: boolean;
   message: string;
+}
+
+export interface LoginUserData {
+  email: string;
+  password: string;
+}
+
+export interface LoginUserResponse {
+  success: boolean;
+  message: string;
+  token: string;
+  user: {
+    id: number;
+    userName: string;
+    email: string;
+    role: string;
+  };
 }

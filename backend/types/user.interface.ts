@@ -10,6 +10,7 @@ export  interface User extends RowDataPacket{
   email: string;
 
   birthDate: Date | null;
+  address:string;
   phoneNumber: string | null;
 
   facebook: string | null;
@@ -41,6 +42,7 @@ export interface NewUser {
   password: string;
 
   birthDate: string | null;
+  address:string;
   phoneNumber: string | null;
 
   facebook: string | null;
