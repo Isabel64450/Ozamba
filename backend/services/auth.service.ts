@@ -6,9 +6,15 @@ import type { RegisterUserData, RegisterUserResponse, LoginUserData, LoginUserRe
 import sendEmail from "../tools.auth/sendEmail.js";
 import type { AuthRepository } from "../types/auth.repository.interface.js";
 
+
+
 interface VerificationTokenPayload extends JwtPayload {
   id: number;
 }
+
+
+
+
 
 class AuthService {
   private authRepository: AuthRepository;
