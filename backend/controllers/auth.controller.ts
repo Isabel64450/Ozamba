@@ -130,8 +130,7 @@ class AuthController {
     res: Response,
   ): Promise<void> {
     try {
-      const token = req.query.token as string;
-      const { password, confirmPassword } = req.body;
+      const { token, password, confirmPassword } = req.body;
 
       if (!token) {
         res.status(400).json({ error: "Token is required" });
