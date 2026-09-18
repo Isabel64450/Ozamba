@@ -9,6 +9,7 @@ import Sports from './pages/dashboard/Sport';
 import House  from './pages/dashboard/House';
 import Productions from './pages/dashboard/Productions'
 import Creative from './pages/dashboard/Creativity'
+import DashboardLayout from './pages/DashboardLayout';
 
 
 
@@ -20,7 +21,7 @@ function App() {
        <Route path="/register" element={<Register />} />
        <Route path="/verify-email/:token" element={<VerifyEmail />}/>
        <Route path="/login" element={<Login />} />
-
+       <Route path="/dashboard" element={<DashboardLayout />} />
 
         <Route path="/" element={<Dashboard />} />
         <Route path="/sports" element={<Sports />} />

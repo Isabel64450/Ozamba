@@ -10,11 +10,7 @@ export default function House() {
     <main className="sports-page">
 
      
-      <img
-        src="/OzambaLogo.png"
-        alt="Ozamba Group"
-        className="sports-logo"
-      />
+      
 
      
       <section className="sports-content">
@@ -22,7 +18,7 @@ export default function House() {
         <h1 className="sports-title-main">
           <span className="title-white">WELCOME TO</span>
           
-          <span className="title-green">OZAMBA HOUSE</span>
+          <span className="title-green">FINANCE</span>
         </h1>
        
         <div className="sports-visual">

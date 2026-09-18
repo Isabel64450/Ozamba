@@ -1,0 +1,447 @@
+
+.dashboard-page {
+  min-height: 100vh;
+  background-color: #f5f6fa;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.dashboard-content {
+  margin-left: 260px;
+  min-height: 100vh;
+  padding: 35px 45px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER / ACTIONS
+========================= */
+
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.dashboard-welcome h1 {
+  margin: 0;
+  color: #2F4798;
+  font-size: 32px;
+  font-weight: 700;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  margin-bottom: 30px;
+}
+
+.dashboard-welcome p {
+  margin: 6px 0 0;
+  color: #777;
+  font-size: 15px;
+}
+
+.dashboard-buttons {
+  display: flex;
+  gap: 25px;
+}
+
+.dashboard-action-button {
+  width: 282px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 18px;
+
+  border: 2px solid #2F4798;
+  border-radius: 12px;
+
+  background-color: white;
+  color:  #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+ 
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.dashboard-action-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.action-icon {
+  font-size: 18px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.dashboard-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.dashboard-tabs {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.dashboard-tab {
+  position: relative;
+
+  padding: 0 0 12px;
+
+  border: none;
+  background: none;
+
+  color: #888;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.dashboard-tab.active {
+  color: #ED4C5C;
+}
+
+.dashboard-tab.active::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: #ED4C5C;
+}
+
+
+/* =========================
+   DATES / FILES
+========================= */
+
+.dashboard-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.dashboard-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 15px;
+
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.date-box {
+  min-width: 45px;
+  height: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #2F4798;
+  color: white;
+
+  border-radius: 7px;
+}
+
+.date-box span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.date-box small {
+  font-size: 9px;
+}
+
+.file-icon {
+  font-size: 24px;
+}
+
+.list-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.list-info strong {
+  font-size: 13px;
+  color: #333;
+}
+
+.list-info span {
+  font-size: 11px;
+  color: #999;
+}
+
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+ 
+  align-items: start;
+}
+
+.dashboard-main {
+  min-width: 0;
+}
+
+.dashboard-right {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-left: 1px solid #D9D9D9;
+  padding-left: 30px;
+}
+
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  margin: 0;
+
+  font-size: 19px;
+  color: #333;
+}
+
+.card-header a {
+  color: #ED4C5C;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.card-header a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   BIRTHDAYS
+========================= */
+
+.birthday-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.birthday-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: #2F4798;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.birthday-item div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.birthday-item strong {
+  font-size: 14px;
+}
+
+.birthday-item span {
+  font-size: 12px;
+  color: #999;
+}
+
+
+/* =========================
+   ACTIVITIES
+========================= */
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.activity-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background-color: #ED4C5C;
+  flex-shrink: 0;
+}
+
+.activity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activity-info strong {
+  font-size: 13px;
+  color: #333;
+}
+
+.activity-info span {
+  font-size: 11px;
+  color: #999;
+}
+
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+.notification-button {
+  margin-top: 18px;
+
+  border: none;
+  background: none;
+
+  color: #2F4798;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.notification-button:hover {
+  color: #ED4C5C;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+  .dashboard-buttons {
+    flex-wrap: wrap;
+  }
+
+  .dashboard-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-bottom {
+    grid-template-columns: 1fr;
+  }
+
+    .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .dashboard-content {
+    margin-left: 0;
+    padding: 25px 20px;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .dashboard-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .dashboard-action-button {
+    justify-content: center;
+  }
+
+  .dashboard-list {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-content {
+    margin-left: 0;
+    padding: 25px 20px;
+  }
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-right {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
