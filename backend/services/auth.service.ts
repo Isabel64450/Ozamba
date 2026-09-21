@@ -151,6 +151,38 @@ class AuthService {
 
     await this.authRepository.saveResetToken(email, token, expire);
 
+    const clientFront = process.env.CLIENT_FRONT;
+    if (!clientFront) throw new Error("CLIENT_FRONT n'est pas défini");
+
+    const resetUrl = `${clientFront}/reset-password/${token}`;
+
+    try {
+      await sendEmail.sendMail({
+        from: process.env.GMAIL_USER,
+        to: email,
+        subject: "Reset your Ozamba password",
+        html: `<div style="font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 30px; color: #333333; background-color: #ffffff;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #2F4798; margin: 0; font-size: 28px;">Ozamba</h1>
+          </div>
+          <p style="font-size: 16px; line-height: 1.6;">Hello <strong>${user.userName}</strong>,</p>
+          <p style="font-size: 16px; line-height: 1.6;">We received a request to reset your password. Click the button below — this link is valid for <strong>1 hour</strong>.</p>
+          <div style="text-align: center; margin: 35px 0;">
+            <a href="${resetUrl}" style="display: inline-block; padding: 14px 28px; background-color: #2F4798; color: #ffffff; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: bold;">
+              Reset my password
+            </a>
+          </div>
+          <p style="font-size: 14px; line-height: 1.6; color: #666666;">If the button doesn't work, copy and paste this link into your browser:</p>
+          <p style="font-size: 13px; word-break: break-all; color: #2F4798;">${resetUrl}</p>
+          <p style="margin-top: 30px; font-size: 14px; line-height: 1.6; color: #666666;">If you did not request a password reset, you can safely ignore this email.</p>
+          <hr style="border: none; border-top: 1px solid #eeeeee; margin: 35px 0 20px;">
+          <p style="text-align: center; font-size: 12px; color: #999999;">This email was sent automatically by Ozamba. Please do not reply.</p>
+        </div>`,
+      });
+    } catch (emailError) {
+      console.error("Error sending reset password email:", emailError);
+    }
+
     return { success: true, message: "If this email exists, a link has been sent to you." };
   }
 
