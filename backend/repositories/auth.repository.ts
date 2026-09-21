@@ -1,0 +1,167 @@
+import argon2 from "argon2";
+import type { NewUser, User } from "../types/user.interface.js";
+import type { Pool, ResultSetHeader } from "mysql2/promise";
+
+class AuthRepository {
+  constructor(private pool: Pool) {}
+
+  async createUser(userData: NewUser): Promise<number> {
+    const {
+      userName,
+      lastName,
+      name,
+      email,
+      birthDate,
+      address,
+      phoneNumber,
+      facebook,
+      twitter,
+      tiktok,
+      job,
+      category,
+      password,
+    } = userData;
+
+    try {
+      // Hash du mot de passe avant l'enregistrement
+      const hashedPassword = await argon2.hash(password);
+
+      const [result] = await this.pool.query<ResultSetHeader>(
+        `INSERT INTO users (
+          userName,
+          lastName,
+          name,
+          email,
+          birthDate,
+          address,
+          phoneNumber,
+          facebook,
+          twitter,
+          tiktok,
+          job,
+          category,
+          password
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          userName,
+          lastName,
+          name,
+          email,
+          birthDate ?? null,
+          address,
+          phoneNumber ?? null,
+          facebook ?? null,
+          twitter ?? null,
+          tiktok ?? null,
+          job ?? null,
+          category ?? null,
+          hashedPassword,
+        ],
+      );
+
+      return result.insertId;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error(
+          "Erreur in AuthRepository.createUser :",
+          err.message
+        );
+      }
+
+      throw new Error("Error inserting user.");
+    }
+  }
+
+  async getUserByEmail(email: string): Promise<User | null> {
+    const [rows] = await this.pool.query<User[]>(
+      `SELECT * FROM users WHERE email = ? LIMIT 1`,
+      [email],
+    );
+
+    return rows[0] ?? null;
+  }
+
+  /**
+   * Récupérer un utilisateur par son ID
+   */
+  async getUserById(id: number): Promise<User | null> {
+    const [rows] = await this.pool.query<User[]>(
+      `SELECT * FROM users WHERE id = ? LIMIT 1`,
+      [id],
+    );
+
+    return rows[0] ?? null;
+  }
+
+  async saveResetToken(
+    email: string,
+    token: string,
+    expire: Date,
+  ): Promise<void> {
+    await this.pool.query(
+      `UPDATE users 
+     SET resetPasswordToken = ?, resetPasswordExpire = ? 
+     WHERE email = ?`,
+      [token, expire, email],
+    );
+  }
+
+  async getUserByResetToken(token: string): Promise<User | null> {
+    const [rows] = await this.pool.query<User[]>(
+      `SELECT * FROM users 
+     WHERE resetPasswordToken = ? 
+     AND resetPasswordExpire > NOW() 
+     LIMIT 1`,
+      [token],
+    );
+
+    return rows[0] ?? null;
+  }
+
+  async updatePassword(userId: number, hashedPassword: string): Promise<void> {
+  await this.pool.query(
+    `UPDATE users 
+     SET password = ?, resetPasswordToken = NULL, resetPasswordExpire = NULL 
+     WHERE id = ?`,
+    [hashedPassword, userId]
+  );
+}
+
+ 
+
+  async markUserAsVerified(id: number): Promise<void> {
+    console.log("ID à vérifier :", id);
+    const [result]= await this.pool.query(
+      `
+      UPDATE users
+      SET isVerified = 1
+      WHERE id = ?
+      `,
+      [id]
+    );
+     console.log("Résultat UPDATE :", result);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+export default AuthRepository;

@@ -1,0 +1,195 @@
+
+.verify-email-page {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.verify-email-sidebar {
+  width: 80px;
+  background-color: #2B3A8F;
+  flex-shrink: 0;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.verify-email-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.verify-email-background {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  height: 170vh;
+  width: auto;
+  max-width: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.verify-email-back {
+  padding: 20px 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.verify-email-back img {
+  height: 52px;
+  cursor: pointer;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.verify-email-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.verify-email-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 48px 40px;
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.verify-email-logo {
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.verify-email-card h1 {
+  margin: 0 0 20px;
+
+  color: #2B3A8F;
+
+  font-family: "Myriad Pro", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.verify-email-icon {
+  width: 60px;
+  height: 60px;
+
+  margin: 10px auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: #CC0000;
+  color: white;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.verify-email-icon.success {
+  background-color: #16803C;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.success-message {
+  color: #16803C;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.error-message {
+  color: #CC0000;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.verify-email-redirect {
+  color: #666666;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.verify-email-button {
+  width: 100%;
+
+  padding: 13px;
+
+  background-color: #2B3A8F;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-family: "Myriad Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.verify-email-button:hover {
+  background-color: #243275;
+}
+
