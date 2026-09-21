@@ -47,7 +47,7 @@ export default function Dashboard() {
 
       {/* Logo */}
       <img
-        src="/iconGroupOzamba.png"
+        src="/logo renard.png"
         alt="Ozamba Group"
         className="dashboard-logo"
       />
@@ -65,7 +65,7 @@ export default function Dashboard() {
         onMouseEnter={() => setActiveSection("sports")}
         onMouseLeave={() => setActiveSection(null)}
       >
-        SPORTS
+        OZAMBA
       </Link>
       
        <Link
@@ -80,7 +80,7 @@ export default function Dashboard() {
         onMouseEnter={() => setActiveSection("creativity")}
         onMouseLeave={() => setActiveSection(null)}
       >
-        CREATIVE
+        FOUNDANTION
       </Link>
 
        <Link
@@ -95,7 +95,7 @@ export default function Dashboard() {
         onMouseEnter={() => setActiveSection("house")}
         onMouseLeave={() => setActiveSection(null)}
       >
-        HOUSE
+        FINANCE
       </Link>
 
       <Link
@@ -110,7 +110,7 @@ export default function Dashboard() {
         onMouseEnter={() => setActiveSection("productions")}
         onMouseLeave={() => setActiveSection(null)}
       >
-        PRODUCTIONS
+        INNOVATION DIGITAL
       </Link>
       
 
@@ -144,7 +144,7 @@ export default function Dashboard() {
                     activeSection !== null ? "dashboard-title-hover" : ""
                               }`}
 >
-  CHOOSE YOUR SIDE
+  RENDAMBO HOLDINGS
 </p>
 
         </div>

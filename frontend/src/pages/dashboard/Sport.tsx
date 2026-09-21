@@ -11,7 +11,7 @@ export default function Sports() {
 
      
       <img
-        src="/OzambaLogo.png"
+        src="/nouveau logo oz blanc.png"
         alt="Ozamba Group"
         className="sports-logo"
       />
@@ -22,7 +22,7 @@ export default function Sports() {
         <h1 className="sports-title-main">
           <span className="title-white">WELCOME TO</span>
           
-          <span className="title-red">OZAMBA SPORTS</span>
+          <span className="title-white">OZAMBA</span>
         </h1>
        
         <div className="sports-visual">
