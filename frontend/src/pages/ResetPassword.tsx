@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import WorldClock from "../components/WorldClock";
 import LanguageSelector from "../components/LanguageSelector";
 
@@ -10,8 +10,7 @@ export default function ResetPassword() {
   const [confirmError, setConfirmError] = useState("");
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  const { token } = useParams<{ token: string }>();
 
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
@@ -39,7 +38,7 @@ export default function ResetPassword() {
     await fetch("http://localhost:3000/auth/reset-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token, password }),
+      body: JSON.stringify({ token, password, confirmPassword: confirm }),
     });
 
     setSuccess(true);
