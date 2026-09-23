@@ -11,6 +11,20 @@ export default function ResetPassword() {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   const { token } = useParams<{ token: string }>();
+  const [serverError, setServerError] = useState("");
+
+  // Règles du mot de passe : recalculées à chaque rendu, pas besoin de state
+  const rules = [
+    { label: "MAJ", valid: /[A-Z]/.test(password) },
+    { label: "NUMBER: 0123456789", valid: /[0-9]/.test(password) },
+    { label: "SPECIAL CHARACTER (!@#?...)", valid: /[^A-Za-z0-9]/.test(password) },
+  ];
+  const allRulesValid = rules.every((rule) => rule.valid);
+
+  // Force : 1 point par règle validée + 1 point si 8 caractères ou plus (max 4)
+  const score = rules.filter((rule) => rule.valid).length + (password.length >= 8 ? 1 : 0);
+  const strengthColor = score === 4 ? "#22c55e" : score >= 2 ? "#F59E0B" : "#CC0000";
+  const strengthLabel = score === 4 ? "GOOD" : score >= 2 ? "MEDIUM" : "POOR";
 
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
@@ -18,6 +32,9 @@ export default function ResetPassword() {
 
     if (!password.trim()) {
       setPasswordError("Please enter a password.");
+      hasError = true;
+    } else if (!allRulesValid) {
+      setPasswordError("Password must contain an uppercase letter, a number and a special character.");
       hasError = true;
     } else {
       setPasswordError("");
@@ -35,11 +52,24 @@ export default function ResetPassword() {
 
     if (hasError) return;
 
-    await fetch("http://localhost:3000/auth/reset-password", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token, password, confirmPassword: confirm }),
-    });
+    setServerError("");
+    try {
+      const response = await fetch("http://localhost:3000/auth/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, password, confirmPassword: confirm }),
+      });
+
+      // Le back renvoie { error } en cas d'échec (token invalide, expiré...)
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        setServerError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+    } catch {
+      setServerError("Server unreachable. Please try again later.");
+      return;
+    }
 
     setSuccess(true);
     setTimeout(() => navigate("/login"), 2000);
@@ -165,15 +195,15 @@ export default function ResetPassword() {
                   <div
                     style={{
                       height: "100%",
-                      width: password.length > 8 ? "66%" : password.length > 4 ? "33%" : password.length > 0 ? "15%" : "0",
-                      background: password.length > 8 ? "#22c55e" : "#CC0000",
+                      width: `${score * 25}%`,
+                      background: strengthColor,
                       borderRadius: "2px",
                       transition: "width 0.3s",
                     }}
                   />
                 </div>
-                <p style={{ fontSize: "11px", color: "#CC0000", textAlign: "right", margin: "0 0 4px" }}>
-                  {password.length > 8 ? "GOOD" : password.length > 0 ? "POOR" : ""}
+                <p style={{ fontSize: "11px", color: strengthColor, textAlign: "right", margin: "0 0 4px" }}>
+                  {password.length > 0 ? strengthLabel : ""}
                 </p>
                 {passwordError && (
                   <p style={{ color: "#CC0000", fontSize: "13px", margin: "0 0 8px", textAlign: "left" }}>
@@ -219,10 +249,25 @@ export default function ResetPassword() {
 
               {/* Règles mot de passe */}
               <div style={{ fontSize: "11px", color: "#A7B0D0", textAlign: "left", margin: "4px 0 20px", lineHeight: 2, display: "flex", flexDirection: "column", gap: "2px" }}>
-                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_1017_21)"><path d="M6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.5 6L5.5 7L7.5 5" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/></g><defs><clipPath id="clip0_1017_21"><rect width="12" height="12" fill="white"/></clipPath></defs></svg> MAJ</span>
-                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_1017_21)"><path d="M6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.5 6L5.5 7L7.5 5" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/></g><defs><clipPath id="clip0_1017_21"><rect width="12" height="12" fill="white"/></clipPath></defs></svg> NUMBER: 0123456789</span>
-                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_1017_21)"><path d="M6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.5 6L5.5 7L7.5 5" stroke="#A7B0D0" strokeLinecap="round" strokeLinejoin="round"/></g><defs><clipPath id="clip0_1017_21"><rect width="12" height="12" fill="white"/></clipPath></defs></svg> SPECIAL CHARACTERS: @"('/),?.;*-_</span>
+                {rules.map((rule) => {
+                  const color = rule.valid ? "#21D51E" : "#A7B0D0";
+                  return (
+                    <span key={rule.label} style={{ display: "flex", alignItems: "center", gap: "6px", color }}>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z" stroke={color} strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M4.5 6L5.5 7L7.5 5" stroke={color} strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      {rule.label}
+                    </span>
+                  );
+                })}
               </div>
+
+              {serverError && (
+                <p style={{ color: "#CC0000", fontSize: "13px", margin: "0 0 12px", textAlign: "left" }}>
+                  {serverError}
+                </p>
+              )}
 
               <button
                 type="submit"
