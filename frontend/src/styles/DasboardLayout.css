@@ -46,6 +46,7 @@
 .dashboard-buttons {
   display: flex;
   gap: 25px;
+  margin-left: 50px;
 }
 
 .dashboard-action-button {
@@ -89,10 +90,14 @@
 ========================= */
 
 .dashboard-card {
-  background-color: white;
-  border-radius: 12px;
+  background-color: #EFEFEF;
+  border-radius: 14px;
   padding: 24px;
   box-sizing: border-box;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 100px;
+ 
 }
 
 
@@ -145,10 +150,26 @@
    DATES / FILES
 ========================= */
 
+.upcoming-card {
+
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.section-title {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+}
+
+
 .dashboard-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 1px solid #eee;
 }
 
 .dashboard-list-item {
@@ -156,30 +177,31 @@
   align-items: center;
   gap: 12px;
 
-  padding: 15px;
+  padding: 12px 0;
 
-  border: 1px solid #eee;
-  border-radius: 8px;
+  border-bottom: 1px solid #999;
+ 
 }
 
 .date-box {
   min-width: 45px;
-  height: 50px;
+  height: 45px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  background-color: #2F4798;
-  color: white;
+  flex-shrink: 0;
+  
+  color: #2F4798;
 
   border-radius: 7px;
 }
 
 .date-box span {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
+  line-height: 1;
 }
 
 .date-box small {
@@ -196,14 +218,110 @@
   gap: 4px;
 }
 
-.list-info strong {
-  font-size: 13px;
-  color: #333;
+
+.event-time {
+  font-size: 12px;
+  color: #999;
+  min-width: 65px;
+}
+
+.event-name {
+  font-size: 18px;
+  color:#2F4798;
+  font-weight: 600;
+  font-family: "Myriad Pro", Arial, sans-serif;
+}
+.event{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.files-card {
+  
+  padding: 24px;
+  box-sizing: border-box;
+   
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-bottom: 1px solid #999;
+}
+
+.file-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #999;
+
+  text-decoration: none;
+}
+
+.file-link:last-child {
+  border-bottom: none;
+}
+
+.file-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2F4798;
+  font-size: 22px;
+
+  flex-shrink: 0;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-info strong {
+  color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.file-info small {
+  color: #999;
+  font-size: 11px;
+  border-bottom: 1px solid #eee;
+}
+
+.event span{
+    color:#D42431;
+    font-family: "Myriad Pro", Arial, sans-serif;
+    font-size: 18px;
+  font-weight: 600;
+}
+
+.event small{
+    color: #484848;
+    border-bottom: 1px solid #eee;
+}
+
+
+
+.dashboard-list-item strong {
+  font-size: 18px;
+  color:#D42431;
 }
 
 .list-info span {
-  font-size: 11px;
-  color: #999;
+  font-size: 18px;
+  color: #2F4798;
 }
 
 
@@ -226,7 +344,20 @@
   padding-left: 30px;
 }
 
+.upcoming-view-all {
+  display: block;
+  margin-top: 15px;
+  text-align: right;
 
+  color: #2F4798;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.upcoming-view-all:hover {
+  text-decoration: underline;
+}
 /* =========================
    CARD HEADER
 ========================= */
@@ -235,21 +366,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  white-space: nowrap;
   margin-bottom: 20px;
+  gap: 60px;
 }
 
 .card-header h2 {
   margin: 0;
-
-  font-size: 19px;
-  color: #333;
+  font-family: "Myriad Pro", Arial, sans-serif;
+ 
+  color: #2F4798;
+  font-size: 18px;
+  line-height: 1;
+  
+  font-weight: 600;
 }
 
 .card-header a {
   color: #ED4C5C;
-  font-size: 13px;
+  font-size: 18px;
   text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .card-header a:hover {
@@ -261,58 +399,96 @@
    BIRTHDAYS
 ========================= */
 
-.birthday-content {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.birthdays-card {
+  width: 295px;
+  height: 66px;
+  padding: 6px 12px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.birthday-item {
+
+
+
+
+.birthdays-button {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  
+}
+
+.birthdays-main {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.avatar {
-  width: 42px;
-  height: 42px;
-
+.birthdays-icon {
+   width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border-radius: 50%;
-
-  background-color: #2F4798;
-  color: white;
-
-  font-size: 13px;
-  font-weight: 700;
+  color: #ED4C5C;
+  flex-shrink: 0;
 }
 
-.birthday-item div:last-child {
+.birthdays-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.birthdays-count {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+   align-items: center;
+  gap: 7px;
 }
 
-.birthday-item strong {
-  font-size: 14px;
+.birthdays-count strong {
+  color: #ED4C5C;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
 }
 
-.birthday-item span {
-  font-size: 12px;
+.birthdays-count span {
+  color: #ED4C5C;
+  font-size: 18px;
+   line-height: 1;
+}
+
+.birthdays-summary {
+ margin-top: 3px;
+  margin-left: 38px;
+}
+
+.birthdays-summary span {
   color: #999;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.birthdays-button:hover .birthdays-summary span {
+  color: #ED4C5C;
 }
 
 
 /* =========================
    ACTIVITIES
 ========================= */
-
+.activities-card{
+margin-top: 30px;
+}
 .activities-list {
   display: flex;
   flex-direction: column;
+  
 }
 
 .activity-item {
@@ -341,9 +517,10 @@
   gap: 4px;
 }
 
-.activity-info strong {
+.activity-info a {
   font-size: 13px;
-  color: #333;
+ color: #ED4C5C;
+  white-space: nowrap;
 }
 
 .activity-info span {
