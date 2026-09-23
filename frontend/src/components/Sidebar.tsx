@@ -35,7 +35,7 @@ export default function Sidebar() {
             onClick={() => toggleMenu("hg")}
           >
             <span className="sidebar-icon"></span>
-            <span>HG</span>
+            <span>HQ</span>
 
             <span className={`arrow ${openMenu === "hg" ? "open" : ""}`}>
               ›
@@ -148,7 +148,7 @@ export default function Sidebar() {
                 to="/brands/Partners"
                 className="sidebar-sublink"
               >
-                Partners & Ups
+                Partnerships
               </NavLink>
               
               <NavLink
