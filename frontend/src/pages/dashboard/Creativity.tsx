@@ -10,11 +10,7 @@ export default function Creative() {
     <main className="sports-page">
 
      
-      <img
-        src="/OzambaLogo.png"
-        alt="Ozamba Group"
-        className="sports-logo"
-      />
+      
 
      
       <section className="sports-content">
@@ -22,7 +18,7 @@ export default function Creative() {
         <h1 className="sports-title-main">
           <span className="title-white">WELCOME TO</span>
           
-          <span className="title-orange">OZAMBA CREATIVE</span>
+          <span className="title-orange">FOUNDATIONS</span>
         </h1>
        
         <div className="sports-visual">

@@ -1,0 +1,624 @@
+
+.dashboard-page {
+  min-height: 100vh;
+  background-color: #f5f6fa;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.dashboard-content {
+  margin-left: 260px;
+  min-height: 100vh;
+  padding: 35px 45px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER / ACTIONS
+========================= */
+
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.dashboard-welcome h1 {
+  margin: 0;
+  color: #2F4798;
+  font-size: 32px;
+  font-weight: 700;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  margin-bottom: 30px;
+}
+
+.dashboard-welcome p {
+  margin: 6px 0 0;
+  color: #777;
+  font-size: 15px;
+}
+
+.dashboard-buttons {
+  display: flex;
+  gap: 25px;
+  margin-left: 50px;
+}
+
+.dashboard-action-button {
+  width: 282px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 18px;
+
+  border: 2px solid #2F4798;
+  border-radius: 12px;
+
+  background-color: white;
+  color:  #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+ 
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.dashboard-action-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.action-icon {
+  font-size: 18px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.dashboard-card {
+  background-color: #EFEFEF;
+  border-radius: 14px;
+  padding: 24px;
+  box-sizing: border-box;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 100px;
+ 
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.dashboard-tabs {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.dashboard-tab {
+  position: relative;
+
+  padding: 0 0 12px;
+
+  border: none;
+  background: none;
+
+  color: #888;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.dashboard-tab.active {
+  color: #ED4C5C;
+}
+
+.dashboard-tab.active::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: #ED4C5C;
+}
+
+
+/* =========================
+   DATES / FILES
+========================= */
+
+.upcoming-card {
+
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.section-title {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+}
+
+
+.dashboard-list {
+  display: grid;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.dashboard-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #999;
+ 
+}
+
+.date-box {
+  min-width: 45px;
+  height: 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  color: #2F4798;
+
+  border-radius: 7px;
+}
+
+.date-box span {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.date-box small {
+  font-size: 9px;
+}
+
+.file-icon {
+  font-size: 24px;
+}
+
+.list-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.event-time {
+  font-size: 12px;
+  color: #999;
+  min-width: 65px;
+}
+
+.event-name {
+  font-size: 18px;
+  color:#2F4798;
+  font-weight: 600;
+  font-family: "Myriad Pro", Arial, sans-serif;
+}
+.event{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.files-card {
+  
+  padding: 24px;
+  box-sizing: border-box;
+   
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-bottom: 1px solid #999;
+}
+
+.file-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #999;
+
+  text-decoration: none;
+}
+
+.file-link:last-child {
+  border-bottom: none;
+}
+
+.file-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2F4798;
+  font-size: 22px;
+
+  flex-shrink: 0;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-info strong {
+  color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.file-info small {
+  color: #999;
+  font-size: 11px;
+  border-bottom: 1px solid #eee;
+}
+
+.event span{
+    color:#D42431;
+    font-family: "Myriad Pro", Arial, sans-serif;
+    font-size: 18px;
+  font-weight: 600;
+}
+
+.event small{
+    color: #484848;
+    border-bottom: 1px solid #eee;
+}
+
+
+
+.dashboard-list-item strong {
+  font-size: 18px;
+  color:#D42431;
+}
+
+.list-info span {
+  font-size: 18px;
+  color: #2F4798;
+}
+
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+ 
+  align-items: start;
+}
+
+.dashboard-main {
+  min-width: 0;
+}
+
+.dashboard-right {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-left: 1px solid #D9D9D9;
+  padding-left: 30px;
+}
+
+.upcoming-view-all {
+  display: block;
+  margin-top: 15px;
+  text-align: right;
+
+  color: #2F4798;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.upcoming-view-all:hover {
+  text-decoration: underline;
+}
+/* =========================
+   CARD HEADER
+========================= */
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  margin-bottom: 20px;
+  gap: 60px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-family: "Myriad Pro", Arial, sans-serif;
+ 
+  color: #2F4798;
+  font-size: 18px;
+  line-height: 1;
+  
+  font-weight: 600;
+}
+
+.card-header a {
+  color: #ED4C5C;
+  font-size: 18px;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.card-header a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   BIRTHDAYS
+========================= */
+
+.birthdays-card {
+  width: 295px;
+  height: 66px;
+  padding: 6px 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+
+
+
+
+.birthdays-button {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  
+}
+
+.birthdays-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.birthdays-icon {
+   width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ED4C5C;
+  flex-shrink: 0;
+}
+
+.birthdays-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.birthdays-count {
+  display: flex;
+   align-items: center;
+  gap: 7px;
+}
+
+.birthdays-count strong {
+  color: #ED4C5C;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.birthdays-count span {
+  color: #ED4C5C;
+  font-size: 18px;
+   line-height: 1;
+}
+
+.birthdays-summary {
+ margin-top: 3px;
+  margin-left: 38px;
+}
+
+.birthdays-summary span {
+  color: #999;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.birthdays-button:hover .birthdays-summary span {
+  color: #ED4C5C;
+}
+
+
+/* =========================
+   ACTIVITIES
+========================= */
+.activities-card{
+margin-top: 30px;
+}
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.activity-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background-color: #ED4C5C;
+  flex-shrink: 0;
+}
+
+.activity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activity-info a {
+  font-size: 13px;
+ color: #ED4C5C;
+  white-space: nowrap;
+}
+
+.activity-info span {
+  font-size: 11px;
+  color: #999;
+}
+
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+.notification-button {
+  margin-top: 18px;
+
+  border: none;
+  background: none;
+
+  color: #2F4798;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.notification-button:hover {
+  color: #ED4C5C;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+  .dashboard-buttons {
+    flex-wrap: wrap;
+  }
+
+  .dashboard-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-bottom {
+    grid-template-columns: 1fr;
+  }
+
+    .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .dashboard-content {
+    margin-left: 0;
+    padding: 25px 20px;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .dashboard-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .dashboard-action-button {
+    justify-content: center;
+  }
+
+  .dashboard-list {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-content {
+    margin-left: 0;
+    padding: 25px 20px;
+  }
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-right {
+    display: flex;
+    flex-direction: column;
+  }
+}
+

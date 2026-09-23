@@ -10,11 +10,7 @@ export default function Productions() {
     <main className="sports-page">
 
      
-      <img
-        src="/OzambaLogo.png"
-        alt="Ozamba Group"
-        className="sports-logo"
-      />
+      
 
      
       <section className="sports-content">
@@ -22,7 +18,7 @@ export default function Productions() {
         <h1 className="sports-title-main">
           <span className="title-white">WELCOME TO</span>
           
-          <span className="title-yellow">OZAMBA PRODUCTIONS</span>
+          <span className="title-yellow">INNOVATION DIGITAL</span>
         </h1>
        
         <div className="sports-visual">
