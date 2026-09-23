@@ -17,7 +17,7 @@ export default function ResetPassword() {
   const rules = [
     { label: "MAJ", valid: /[A-Z]/.test(password) },
     { label: "NUMBER: 0123456789", valid: /[0-9]/.test(password) },
-    { label: `SPECIAL CHARACTERS: @"('/),?.;*-_`, valid: /[@"('\/),?.;*\-_]/.test(password) },
+    { label: "SPECIAL CHARACTER (!@#?...)", valid: /[^A-Za-z0-9]/.test(password) },
   ];
   const allRulesValid = rules.every((rule) => rule.valid);
 
