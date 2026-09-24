@@ -1,6 +1,6 @@
 import { Cake } from "lucide-react";
 import WorldClock from "./WorldClock";
-
+import "../styles/DashboardRightSidebar.css";
 type Activity = {
   id: number;
   title: string;

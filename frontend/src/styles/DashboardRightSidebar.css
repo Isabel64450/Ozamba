@@ -1,0 +1,30 @@
+.dashboard-right {
+  width: 100%;
+  max-width: 320px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  box-sizing: border-box;
+}
+
+/* Annule les marges générales du dashboard */
+.dashboard-right .dashboard-card {
+  margin: 0;
+}
+
+/* Birthday */
+.dashboard-right .birthdays-card {
+  width: 295px;
+  height: 66px;
+  padding: 6px 12px;
+  box-sizing: border-box;
+}
+
+/* Activities */
+.dashboard-right .activities-card {
+  width: 295px;
+  margin: 0;
+  box-sizing: border-box;
+}

@@ -15,7 +15,23 @@
   box-sizing: border-box;
 }
 
+.mens-sports-page {
+  min-height: 100vh;
+  background-color: #f5f6fa;
+}
 
+.mens-sports-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 500px;
+  gap: 40px;
+  align-items: start;
+}
+
+.mens-sports-content {
+  min-width: 0;
+  padding: 40px 0 40px 50px;
+  box-sizing: border-box;
+}
 /* =========================
    HEADER / ACTIONS
 ========================= */
