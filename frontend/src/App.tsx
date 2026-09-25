@@ -11,6 +11,7 @@ import Productions from './pages/dashboard/Productions'
 import Creative from './pages/dashboard/Creativity'
 import DashboardLayout from './pages/DashboardLayout';
 import MensSports from './pages/MensSports';
+import TalentsBasketball from './pages/TalentsBasketball';
 
 
 
@@ -24,8 +25,9 @@ function App() {
        <Route path="/verify-email/:token" element={<VerifyEmail />}/>
        <Route path="/login" element={<Login />} />
        <Route path="/dashboard" element={<DashboardLayout />} />
-       <Route path="talents/mens-sports" element={<MensSports />}
-/>
+       <Route path="talents/mens-sports" element={<MensSports />}/>
+       <Route path="sports/mens/basketball" element={<TalentsBasketball/>}/>
+
 
         <Route path="/" element={<Dashboard />} />
         <Route path="/sports" element={<Sports />} />

@@ -58,8 +58,10 @@
 }
 
 .talent{
-    font-size: 24px;
+    font-size: 34px;
     font-family: "Myriad Pro", Arial, sans-serif;
+     font-weight: 700;
+    font-stretch: condensed;
 }
 
 
@@ -81,13 +83,13 @@
 
   color: #2F4798;
   font-family: "Myriad Pro", Arial, sans-serif;
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 700;
   
 }
 .mens-sports-area h1::after {
   content: "";
-  flex: 1;
+  width: 680px;
   height: 4px;
   background-color: #2F4798;
 }
@@ -161,8 +163,8 @@
 }
 
 .sport-card {
-  width: 322px;
-  height: 495px;
+  width: 386px;
+  height: 594px;
 
 
 
@@ -195,7 +197,7 @@
 }
 
 .sport-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-8px);
  
  
 }
@@ -215,9 +217,9 @@
 .mens-sports-area {
   margin-top: 30px;
   padding: 25px;
-
+  width: 100%;
   background-color: #EAF0FF;
- 
+  
 }
 
 
