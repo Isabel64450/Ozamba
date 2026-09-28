@@ -10,10 +10,9 @@ import House  from './pages/dashboard/House';
 import Productions from './pages/dashboard/Productions'
 import Creative from './pages/dashboard/Creativity'
 import DashboardLayout from './pages/DashboardLayout';
-import MensSports from './pages/MensSports';
-import TalentsBasketball from './pages/TalentsBasketball';
-
-
+import DashboardHome from './pages/dashboard/DashboardHome';
+import SportCategories from './pages/talents/SportCategories';
+import AthletesPage from './pages/talents/AthletesPage';
 
 function App() {
   return (
@@ -21,19 +20,22 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-       <Route path="/register" element={<Register />} />
-       <Route path="/verify-email/:token" element={<VerifyEmail />}/>
-       <Route path="/login" element={<Login />} />
-       <Route path="/dashboard" element={<DashboardLayout />} />
-       <Route path="talents/mens-sports" element={<MensSports />}/>
-       <Route path="sports/mens/basketball" element={<TalentsBasketball/>}/>
+      <Route path="/register" element={<Register />} />
+      <Route path="/verify-email/:token" element={<VerifyEmail />} />
+      <Route path="/login" element={<Login />} />
 
+      {/* Pages avec la sidebar : le layout affiche la page enfant dans <Outlet /> */}
+      <Route element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<DashboardHome />} />
+        <Route path="/talents/:gender" element={<SportCategories />} />
+        <Route path="/talents/:gender/:sport" element={<AthletesPage />} />
+      </Route>
 
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/sports" element={<Sports />} />
-        <Route path="/house" element={<House />} />
-        <Route path="/productions" element={<Productions />} />
-        <Route path="/creative" element={<Creative />} />
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/sports" element={<Sports />} />
+      <Route path="/house" element={<House />} />
+      <Route path="/productions" element={<Productions />} />
+      <Route path="/creative" element={<Creative />} />
     </Routes>
   )
 }

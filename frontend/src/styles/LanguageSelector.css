@@ -1,0 +1,21 @@
+/* Par défaut (page Login) : fixé en bas à gauche de l'écran */
+.language-selector {
+  position: fixed;
+  bottom: 16px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.language-selector img {
+  height: 20px;
+  width: auto;
+}
+
+/* Dans la sidebar : il suit le menu (sinon il flotte sur la page quand le tiroir est fermé) */
+.sidebar-footer .language-selector {
+  position: static;
+}

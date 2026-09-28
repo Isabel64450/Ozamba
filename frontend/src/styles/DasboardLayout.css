@@ -1,3 +1,9 @@
+/* =========================
+   POINTS DE RUPTURE (utilisés dans tout le dashboard)
+   - 1200px : la colonne de droite passe sous le contenu
+   - 900px  : la sidebar devient un tiroir + barre du haut
+   - 600px  : téléphone
+========================= */
 
 .dashboard-page {
   min-height: 100vh;
@@ -8,11 +14,25 @@
    MAIN CONTENT
 ========================= */
 
-.dashboard-content {
-  margin-left: 260px;
+/* Conteneur global (sidebar fixe + contenu) */
+.app-layout {
   min-height: 100vh;
-  padding: 35px 45px;
+}
+
+.dashboard-content {
+  /* Variables réutilisées par les pages Talents pour annuler ce padding */
+  --content-pad-y: 35px;
+  --content-pad-x: 45px;
+
+  margin-left: 260px; /* largeur de la sidebar fixe */
+  min-height: 100vh;
+  padding: var(--content-pad-y) var(--content-pad-x);
   box-sizing: border-box;
+}
+
+/* Barre du haut mobile : cachée sur grand écran */
+.mobile-topbar {
+  display: none;
 }
 
 .mens-sports-page {
@@ -22,7 +42,7 @@
 
 .mens-sports-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 500px;
+  grid-template-columns: minmax(0, 1fr) 340px; /* même largeur max que .dashboard-right */
   gap: 40px;
   align-items: start;
 }
@@ -32,6 +52,7 @@
   padding: 40px 0 40px 50px;
   box-sizing: border-box;
 }
+
 /* =========================
    HEADER / ACTIONS
 ========================= */
@@ -39,7 +60,6 @@
 .dashboard-actions {
   display: flex;
   flex-direction: column;
-  
   align-items: flex-start;
   margin-bottom: 30px;
 }
@@ -61,33 +81,30 @@
 
 .dashboard-buttons {
   display: flex;
+  flex-wrap: wrap; /* passe à la ligne plutôt que déborder */
   gap: 25px;
   margin-left: 50px;
 }
 
 .dashboard-action-button {
-  width: 282px;
+  flex: 1 1 200px;  /* les boutons se partagent la largeur disponible */
+  max-width: 282px;
+  box-sizing: border-box;
   height: 66px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-
   padding: 12px 18px;
-
   border: 2px solid #2F4798;
   border-radius: 12px;
-
   background-color: white;
-  color:  #2F4798;
+  color: #2F4798;
   font-family: "Myriad Pro", Arial, sans-serif;
   font-size: 18px;
   line-height: 22px;
- 
   font-weight: 600;
-
   cursor: pointer;
-
   transition: 0.2s ease;
 }
 
@@ -99,7 +116,6 @@
 .action-icon {
   font-size: 18px;
 }
-
 
 /* =========================
    CARDS
@@ -113,9 +129,7 @@
   margin-top: 50px;
   margin-left: 50px;
   margin-right: 100px;
- 
 }
-
 
 /* =========================
    TABS
@@ -130,17 +144,12 @@
 
 .dashboard-tab {
   position: relative;
-
   padding: 0 0 12px;
-
   border: none;
   background: none;
-
   color: #888;
-
   font-size: 16px;
   font-weight: 600;
-
   cursor: pointer;
 }
 
@@ -150,24 +159,19 @@
 
 .dashboard-tab.active::after {
   content: "";
-
   position: absolute;
   left: 0;
   bottom: -1px;
-
   width: 100%;
   height: 2px;
-
   background-color: #ED4C5C;
 }
-
 
 /* =========================
    DATES / FILES
 ========================= */
 
 .upcoming-card {
-
   padding: 24px;
   box-sizing: border-box;
 }
@@ -180,10 +184,8 @@
   text-transform: uppercase;
 }
 
-
 .dashboard-list {
   display: grid;
-  flex-direction: column;
   gap: 12px;
   border-bottom: 1px solid #eee;
 }
@@ -192,25 +194,19 @@
   display: flex;
   align-items: center;
   gap: 12px;
-
   padding: 12px 0;
-
   border-bottom: 1px solid #999;
- 
 }
 
 .date-box {
   min-width: 45px;
   height: 45px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  
   color: #2F4798;
-
   border-radius: 7px;
 }
 
@@ -224,16 +220,11 @@
   font-size: 9px;
 }
 
-.file-icon {
-  font-size: 24px;
-}
-
 .list-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
 
 .event-time {
   font-size: 12px;
@@ -243,21 +234,22 @@
 
 .event-name {
   font-size: 18px;
-  color:#2F4798;
+  color: #2F4798;
   font-weight: 600;
   font-family: "Myriad Pro", Arial, sans-serif;
+  flex-shrink: 0; /* l'heure ne se coupe jamais */
 }
-.event{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+
+.event {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0; /* autorise le texte à passer à la ligne dans le flex */
 }
 
 .files-card {
-  
   padding: 24px;
   box-sizing: border-box;
-   
 }
 
 .files-list {
@@ -271,11 +263,8 @@
   display: flex;
   align-items: center;
   gap: 15px;
-
   padding: 12px 0;
-
   border-bottom: 1px solid #999;
-
   text-decoration: none;
 }
 
@@ -286,14 +275,11 @@
 .file-icon {
   width: 40px;
   height: 40px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #2F4798;
   font-size: 22px;
-
   flex-shrink: 0;
 }
 
@@ -316,23 +302,21 @@
   border-bottom: 1px solid #eee;
 }
 
-.event span{
-    color:#D42431;
-    font-family: "Myriad Pro", Arial, sans-serif;
-    font-size: 18px;
+.event span {
+  color: #D42431;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 18px;
   font-weight: 600;
 }
 
-.event small{
-    color: #484848;
-    border-bottom: 1px solid #eee;
+.event small {
+  color: #484848;
+  border-bottom: 1px solid #eee;
 }
-
-
 
 .dashboard-list-item strong {
   font-size: 18px;
-  color:#D42431;
+  color: #D42431;
 }
 
 .list-info span {
@@ -340,11 +324,14 @@
   color: #2F4798;
 }
 
+/* =========================
+   GRILLE PRINCIPALE : contenu + colonne de droite
+========================= */
 
 .dashboard-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 200px;
- 
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 40px;
   align-items: start;
 }
 
@@ -364,7 +351,6 @@
   display: block;
   margin-top: 15px;
   text-align: right;
-
   color: #2F4798;
   font-size: 14px;
   font-weight: 600;
@@ -374,6 +360,7 @@
 .upcoming-view-all:hover {
   text-decoration: underline;
 }
+
 /* =========================
    CARD HEADER
 ========================= */
@@ -384,17 +371,15 @@
   justify-content: space-between;
   white-space: nowrap;
   margin-bottom: 20px;
-  gap: 60px;
+  gap: 20px;
 }
 
 .card-header h2 {
   margin: 0;
   font-family: "Myriad Pro", Arial, sans-serif;
- 
   color: #2F4798;
   font-size: 18px;
   line-height: 1;
-  
   font-weight: 600;
 }
 
@@ -410,7 +395,6 @@
   text-decoration: underline;
 }
 
-
 /* =========================
    BIRTHDAYS
 ========================= */
@@ -423,10 +407,6 @@
   overflow: hidden;
 }
 
-
-
-
-
 .birthdays-button {
   width: 100%;
   height: 100%;
@@ -436,7 +416,6 @@
   text-align: left;
   cursor: pointer;
   font-family: "Myriad Pro", Arial, sans-serif;
-  
 }
 
 .birthdays-main {
@@ -446,7 +425,7 @@
 }
 
 .birthdays-icon {
-   width: 28px;
+  width: 28px;
   height: 28px;
   display: flex;
   align-items: center;
@@ -462,7 +441,7 @@
 
 .birthdays-count {
   display: flex;
-   align-items: center;
+  align-items: center;
   gap: 7px;
 }
 
@@ -476,11 +455,11 @@
 .birthdays-count span {
   color: #ED4C5C;
   font-size: 18px;
-   line-height: 1;
+  line-height: 1;
 }
 
 .birthdays-summary {
- margin-top: 3px;
+  margin-top: 3px;
   margin-left: 38px;
 }
 
@@ -494,35 +473,31 @@
   color: #ED4C5C;
 }
 
-
 /* =========================
    ACTIVITIES
 ========================= */
-.activities-card{
-margin-top: 30px;
+
+.activities-card {
+  margin-top: 30px;
 }
+
 .activities-list {
   display: flex;
   flex-direction: column;
-  
 }
 
 .activity-item {
   display: flex;
   align-items: center;
   gap: 12px;
-
   padding: 13px 0;
-
   border-bottom: 1px solid #eee;
 }
 
 .activity-dot {
   width: 8px;
   height: 8px;
-
   border-radius: 50%;
-
   background-color: #ED4C5C;
   flex-shrink: 0;
 }
@@ -535,7 +510,7 @@ margin-top: 30px;
 
 .activity-info a {
   font-size: 13px;
- color: #ED4C5C;
+  color: #ED4C5C;
   white-space: nowrap;
 }
 
@@ -544,22 +519,17 @@ margin-top: 30px;
   color: #999;
 }
 
-
 /* =========================
    NOTIFICATION
 ========================= */
 
 .notification-button {
   margin-top: 18px;
-
   border: none;
   background: none;
-
   color: #2F4798;
-
   font-size: 13px;
   font-weight: 600;
-
   cursor: pointer;
 }
 
@@ -567,74 +537,124 @@ margin-top: 30px;
   color: #ED4C5C;
 }
 
-
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media (max-width: 1100px) {
+/* Écran moyen : les marges fixes (50px / 100px) mangeaient toute la largeur */
+@media (max-width: 1400px) {
+  .dashboard-card {
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .dashboard-buttons {
-    flex-wrap: wrap;
+    margin-left: 0;
   }
+}
 
-  .dashboard-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .dashboard-bottom {
-    grid-template-columns: 1fr;
-  }
-
-    .dashboard-layout {
-    grid-template-columns: 1fr;
+/* Tablette paysage : la colonne de droite passe sous le contenu */
+@media (max-width: 1200px) {
+  .dashboard-layout,
+  .mens-sports-layout {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .dashboard-right {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    border-left: none;
+    border-top: 1px solid #D9D9D9;
+    padding-left: 0;
+    padding-top: 25px;
   }
-
 }
 
-
-@media (max-width: 700px) {
-
+/* Tablette portrait / mobile : sidebar en tiroir + barre du haut */
+@media (max-width: 900px) {
   .dashboard-content {
-    margin-left: 0;
-    padding: 25px 20px;
+    --content-pad-y: 25px;
+    --content-pad-x: 20px;
+    margin-left: 0; /* la sidebar ne prend plus de place */
+    min-height: auto;
   }
 
-  .dashboard-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky; /* reste visible quand on scrolle */
+    top: 0;
+    z-index: 900;     /* sous le tiroir (1000) et son fond (999) */
+    height: 60px;
+    padding: 0 16px;
+    background-color: #2F4798;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+    padding: 4px;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .mobile-menu-button svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mobile-topbar-logo {
+    height: 32px;
+    width: auto;
+  }
+}
+
+/* Téléphone */
+@media (max-width: 600px) {
+  .dashboard-content {
+    --content-pad-y: 20px;
+    --content-pad-x: 10px; /* marges de 10px comme sur la maquette mobile */
+  }
+
+  .dashboard-welcome h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
   }
 
   .dashboard-buttons {
     width: 100%;
     flex-direction: column;
+    gap: 12px;
   }
 
   .dashboard-action-button {
-    justify-content: center;
+    flex: none;       /* en colonne, flex-basis 200px deviendrait une hauteur */
+    width: 100%;
+    max-width: none;
+    height: 56px;
+    font-size: 16px;
   }
 
-  .dashboard-list {
-    grid-template-columns: 1fr;
-  }
-  .dashboard-content {
-    margin-left: 0;
-    padding: 25px 20px;
+  .dashboard-card {
+    margin-top: 25px;
+    padding: 16px;
   }
 
-  .dashboard-layout {
-    grid-template-columns: 1fr;
+  .dashboard-list-item {
+    gap: 10px;
   }
 
-  .dashboard-right {
-    display: flex;
-    flex-direction: column;
+  .event-name {
+    font-size: 15px;
+  }
+
+  .dashboard-list-item strong,
+  .event span {
+    font-size: 14px;
+  }
+
+  .card-header h2,
+  .card-header a {
+    font-size: 16px;
   }
 }
-
