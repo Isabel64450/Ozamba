@@ -1,13 +1,32 @@
+/* =========================
+   PAGE (pleine largeur)
+   Le fond bleu va du bord de la sidebar jusqu'à la colonne de droite
+========================= */
+
 .mens-sports-page {
   min-height: 100vh;
-  background-color: #f5f6fa;
+  /* annule le padding de .dashboard-content (variables définies dans DasboardLayout.css) */
+  margin: calc(-1 * var(--content-pad-y)) calc(-1 * var(--content-pad-x));
+  background-color: #fff;
+}
+
+.mens-sports-layout {
+  gap: 0; /* le fond bleu touche la colonne de droite */
 }
 
 .mens-sports-content {
-  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
   box-sizing: border-box;
   max-width: 1400px;
-  margin: 0 auto;
+  width: 100%; /* dans une grille, margin: auto empêchait la colonne de s'étirer */
+}
+
+/* Colonne de droite : un peu d'air à droite */
+.mens-sports-layout > .dashboard-right {
+  padding-right: 30px;
 }
 
 
@@ -15,84 +34,104 @@
    HEADER
 ========================= */
 
+/* Fil d'Ariane sur une ligne : « < TALENTS → BASKETBALL » */
 .mens-sports-header {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 25px;
+  align-items: center;
+  flex-wrap: wrap; /* sur petit écran, le sport passe à la ligne au lieu de déborder */
+  gap: 12px;
+  padding: 30px 45px 20px;
+}
+
+/* Nom du sport : même taille que « TALENTS », en rouge */
+.basketball-title {
+  color: #ED4C5C;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  font-stretch: condensed;
+  line-height: 1;
+}
+
+/* Flèche SVG entre TALENTS et le sport */
+.basketball-separator {
+  width: 22px;
+  height: auto;
+  color: #D42431; /* devient le fill du SVG via currentColor */
+  flex-shrink: 0;
 }
 
 .back-button {
   display: flex;
   align-items: center;
   gap: 8px;
-
   padding: 0;
   border: none;
   background: none;
-
   color: #2F4798;
-
   font-family: "Myriad Pro", Arial, sans-serif;
   font-size: 15px;
   font-weight: 600;
-
   cursor: pointer;
 }
 
 .back-arrow {
   width: 36px;
   height: 36px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background-color: #E5E5E5;
   border-radius: 6px;
-
   color: #ED4C5C;
-
   font-size: 24px;
   font-weight: 700;
 }
 
-.talent{
-    font-size: 34px;
-    font-family: "Myriad Pro", Arial, sans-serif;
-     font-weight: 700;
-    font-stretch: condensed;
+.talent {
+  font-size: 34px;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-weight: 700;
+  font-stretch: condensed;
 }
-
 
 .back-button svg {
   width: 20px;
   height: 20px;
 }
 
-.back-button:hover {
-  color: #ED4C5C;
+
+
+/* =========================
+   ZONE BLEUE
+========================= */
+
+.mens-sports-area {
+  flex: 1; /* le fond bleu descend jusqu'en bas de l'écran */
+  width: 100%;
+  padding: 25px 45px 40px;
+  box-sizing: border-box; /* le padding ne fait plus déborder la zone */
+  background-color: #EAF0FF;
 }
 
 .mens-sports-area h1 {
   display: flex;
   align-items: center;
   gap: 15px;
-
   margin: 40px 0 0 40px;
-
   color: #2F4798;
   font-family: "Myriad Pro", Arial, sans-serif;
   font-size: 34px;
   font-weight: 700;
-  
 }
+
 .mens-sports-area h1::after {
   content: "";
-  width: 680px;
+  flex: 1; /* la ligne prend la place restante */
   height: 4px;
   background-color: #2F4798;
 }
+
 
 /* =========================
    SEARCH
@@ -100,52 +139,36 @@
 
 .sports-search {
   position: relative;
-
   width: 100%;
   max-width: 800px;
-  
   margin: 30px auto 0;
 }
 
 .sports-search input {
   width: 100%;
   height: 48px;
-
   padding: 0 18px 0 48px;
-
   box-sizing: border-box;
-
-  border: 0px solid #D9D9D9;
+  border: 0 solid #D9D9D9;
   border-radius: 25px;
-
   background-color: white;
-
   color: #333;
-
   font-family: "Myriad Pro", Arial, sans-serif;
   font-size: 14px;
-
   outline: none;
 }
 
 .sports-search input:focus {
   border-color: #2F4798;
-  gap: 20px;
 }
 
 .sports-search-icon {
   position: absolute;
-
   left: 17px;
   top: 50%;
-
   width: 20px;
   height: 20px;
-
   transform: translateY(-50%);
-
-  
-
   pointer-events: none;
 }
 
@@ -156,70 +179,56 @@
 
 .sports-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 45px;
-
-  margin-top: 95px;
+  /* Les cartes s'étirent pour remplir toute la largeur, 140px minimum */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
 }
 
 .sport-card {
-  width: 386px;
-  height: 594px;
-
-
-
-
+  width: 100%;
+  aspect-ratio: 386 / 594; /* proportions de la maquette desktop */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 15px;
-
   padding: 25px;
-
-  
   border-radius: 25px;
-  
- 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
- 
   font-family: "Myriad Pro", Arial, sans-serif;
   font-size: 20px;
   font-weight: 600;
-
   cursor: pointer;
-
   transition: 0.2s ease;
 }
 
 .sport-card:hover {
   transform: translateY(-8px);
- 
- 
 }
 
 .sport-card-icon {
   width: 48px;
   height: 48px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-
- 
 }
-.mens-sports-area {
-  margin-top: 30px;
-  padding: 25px;
-  width: 100%;
-  background-color: #EAF0FF;
-  
+
+/* Carte sans image de fond (flag, hockey en attendant les visuels) */
+.sport-card--no-image {
+  background-color: #2F4798;
+  border: none;
+}
+
+.sport-card-label {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 
@@ -227,22 +236,71 @@
    RESPONSIVE
 ========================= */
 
-@media (max-width: 900px) {
-  .sports-cards {
-    grid-template-columns: repeat(2, 1fr);
+/* La colonne de droite passe sous le contenu */
+@media (max-width: 1200px) {
+  .mens-sports-content {
+    min-height: auto;  /* sinon il faudrait scroller un écran entier pour voir la colonne de droite */
+    max-width: none;
+  }
+
+  .mens-sports-layout > .dashboard-right {
+    padding: 25px var(--content-pad-x) 30px;
+  }
+
+  .mens-sports-area h1 {
+    margin-left: 0;
   }
 }
 
-@media (max-width: 600px) {
-  .mens-sports-content {
-    padding: 25px 20px;
+@media (max-width: 900px) {
+  .mens-sports-header {
+    padding: 20px var(--content-pad-x) 15px;
   }
 
-  .mens-sports-header h1 {
-    font-size: 28px;
+  .mens-sports-area {
+    padding: 20px var(--content-pad-x) 30px;
   }
 
   .sports-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Téléphone : une carte par ligne, format paysage comme sur la maquette mobile */
+@media (max-width: 600px) {
+  .mens-sports-header {
+    gap: 8px;
+  }
+
+  .talent,
+  .basketball-title {
+    font-size: 22px;
+  }
+
+  .basketball-separator {
+    width: 16px;
+  }
+
+  .mens-sports-area h1 {
+    margin-top: 25px;
+    font-size: 22px;
+  }
+
+  .sports-search {
+    margin-top: 10px;
+  }
+
+  .sports-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .sport-card {
+    aspect-ratio: 355 / 400;
+  }
+
+  .sport-card:hover {
+    transform: none; /* pas de survol sur écran tactile */
   }
 }

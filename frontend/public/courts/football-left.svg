@@ -1,0 +1,21 @@
+<svg width="296" height="198" viewBox="0 0 296 198" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="3.5" y="0.5" width="289" height="197" stroke="black"/>
+<rect x="250.5" y="50.5" width="42" height="97" stroke="black"/>
+<rect x="3.5" y="50.5" width="42" height="97" stroke="black"/>
+<rect x="3.5" y="78.5" width="13" height="42" stroke="black"/>
+<rect x="279.5" y="78.5" width="13" height="42" stroke="black"/>
+<line x1="148.5" y1="2.48703e-08" x2="148.5" y2="198" stroke="black"/>
+<circle cx="148" cy="99" r="29.5" stroke="black"/>
+<mask id="mask0_2_9008" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="236" y="69" width="60" height="60">
+<circle cx="266" cy="99" r="29.5" stroke="black"/>
+</mask>
+<g mask="url(#mask0_2_9008)">
+<rect x="213" y="53" width="37" height="82" fill="black"/>
+</g>
+<mask id="mask1_2_9008" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="69" width="60" height="60">
+<circle cx="30" cy="99" r="29.5" transform="rotate(180 30 99)" stroke="black"/>
+</mask>
+<g mask="url(#mask1_2_9008)">
+<rect x="83" y="145" width="37" height="82" transform="rotate(180 83 145)" fill="black"/>
+</g>
+</svg>

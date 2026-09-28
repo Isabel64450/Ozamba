@@ -1,16 +1,37 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
+import { X } from "lucide-react";
 import "../styles/Sidebar.css";
 import LanguageSelector from "./LanguageSelector";
 
-export default function Sidebar() {
-     const [openMenu, setOpenMenu] = useState<string | null>(null);
+type SidebarProps = {
+  isOpen: boolean;      // tiroir ouvert (mobile uniquement)
+  onClose: () => void;
+};
 
-     const toggleMenu = (menu: string) => {
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+
+  const toggleMenu = (menu: string) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
+
+  // Un clic sur n'importe quel lien du menu referme le tiroir (délégation d'événement)
+  const handleNavClick = (e: MouseEvent<HTMLElement>) => {
+    if ((e.target as HTMLElement).closest("a")) onClose();
+  };
+
   return (
-    <aside className="sidebar">
+    <>
+    {/* Fond sombre derrière le tiroir : un clic dessus ferme le menu */}
+    {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
+
+    <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+
+      {/* Bouton fermer : visible seulement en mode tiroir */}
+      <button className="sidebar-close" onClick={onClose} aria-label="Fermer le menu">
+        <X />
+      </button>
 
       {/* Logo */}
       <div className="sidebar-logo">
@@ -21,7 +42,7 @@ export default function Sidebar() {
       </div>
 
       {/* Menu */}
-      <nav className="sidebar-menu">
+      <nav className="sidebar-menu" onClick={handleNavClick}>
 
         <NavLink to="/dashboard" className="sidebar-link">
           <span className="sidebar-icon"></span>
@@ -82,14 +103,14 @@ export default function Sidebar() {
             <div className="sidebar-submenu">
 
               <NavLink
-                to="/talents/mens-sports"
+                to="/talents/men"
                 className="sidebar-sublink"
               >
                 Men's Sports
               </NavLink>
 
               <NavLink
-                to="/talents/womens-sports"
+                to="/talents/women"
                 className="sidebar-sublink"
               >
                 Women's Sports
@@ -308,5 +329,6 @@ export default function Sidebar() {
         <LanguageSelector />
       </div>
     </aside>
+    </>
   );
 }

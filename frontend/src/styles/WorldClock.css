@@ -1,0 +1,50 @@
+/* Grand écran : horloges fixées en bas à droite */
+.world-clock {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  gap: 6px;
+  z-index: 100;
+}
+
+.world-clock-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  padding: 4px 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.world-clock-label {
+  font-size: 8px;
+  color: #CC0000;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.world-clock-time {
+  font-size: 13px;
+  color: #2B3A8F;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* Tablette / mobile : les horloges reprennent leur place dans la page
+   (en bas du contenu, 3 côte à côte comme sur la maquette mobile) */
+@media (max-width: 900px) {
+  .world-clock {
+    position: static;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .world-clock-item {
+    flex: 1;
+    min-width: 0;
+  }
+}

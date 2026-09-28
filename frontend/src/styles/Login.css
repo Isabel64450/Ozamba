@@ -386,20 +386,83 @@
    RESPONSIVE
 ========================= */
 
-@media (max-width: 700px) {
+/* Tablette / mobile : la bande bleue passe en haut (barre comme sur la maquette mobile)
+   et la page peut défiler au lieu d'être coupée */
+@media (max-width: 900px) {
 
-  .login-sidebar {
-    width: 40px;
+  .login-page {
+    position: relative; /* repère pour le sélecteur de langue */
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
   }
 
-  .login-card {
-    max-width: 350px;
+  .login-sidebar {
+    width: 100%;
+    height: 60px;
+    position: relative;
+    z-index: 1; /* passe devant l'image de fond */
+  }
 
-    padding: 40px 30px;
+  /* static : les éléments en absolute se placent par rapport à .login-page
+     (sinon le sélecteur de langue serait coupé par l'overflow de .login-main) */
+  .login-main {
+    position: static;
+    padding-bottom: 16px;
+  }
+
+  /* Langue : dans la barre du haut au lieu de flotter sur le formulaire */
+  .login-page .language-selector {
+    position: absolute;
+    top: 20px;
+    bottom: auto; /* annule le bottom: 16px de base, sinon top + bottom étirent la boîte */
+    left: 16px;
+  }
+
+  .login-content {
+    padding: 0 10px 30px;
+  }
+
+  /* Horloges : sous le formulaire, dans la page */
+  .login-main .world-clock {
+    position: relative;
+    z-index: 1;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .login-back {
+    height: 42px;
+  }
+
+  /* Sur la maquette mobile il n'y a pas de carte : les champs prennent toute la largeur */
+  .login-card {
+    max-width: none;
+    padding: 20px 0;
+    box-shadow: none;
+    background-color: transparent;
   }
 
   .login-title {
-    font-size: 24px;
+    font-size: 26px;
   }
 
+  .login-field label {
+    font-size: 18px;
+  }
+
+  /* Champs plus hauts = plus faciles à toucher au doigt ; 16px évite le zoom auto d'iOS */
+  .login-input-wrapper input {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .login-submit {
+    padding: 18px;
+    font-size: 16px;
+  }
 }

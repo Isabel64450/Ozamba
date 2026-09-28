@@ -158,3 +158,46 @@
   margin-top: auto;
   padding: 15px;
 }
+
+
+/* =========================
+   TIROIR MOBILE
+   Sous 900px la sidebar sort de l'écran et s'ouvre avec le bouton ☰
+========================= */
+
+.sidebar-close,
+.sidebar-overlay {
+  display: none; /* inutiles sur grand écran */
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: min(260px, 80vw);
+    transform: translateX(-100%); /* cachée à gauche */
+    transition: transform 0.25s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 999; /* juste sous la sidebar (1000) */
+  }
+
+  .sidebar-close {
+    display: flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+  }
+}
