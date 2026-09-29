@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { authRouter } from "./routes/auth.router.js";
+import { talentRouter } from "./routes/talents.router.js";
 import { initDependencies } from "./dependencies/initDependencies.js";
 import getPool from "./config/base.pool.js";
 
@@ -24,9 +25,9 @@ app.use(cors({
 }))
 app.use(express.json());
 
-const {authController}=initDependencies(pool)
+const {authController, talentController}=initDependencies(pool)
 app.use("/auth", authRouter(authController))
-
+app.use("/talents", talentRouter(talentController));
 const PORT = Number(process.env.PORT) || 3000;
 app.listen(PORT, () => {
    
