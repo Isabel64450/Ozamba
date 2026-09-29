@@ -6,8 +6,11 @@ export interface TalentFilters {
 }
 
 export interface TalentListItem extends RowDataPacket {
+  photo: string | null;
   firstName: string;
   lastName: string;
-  number: number | null;
+  club: string | null;
   position: string | null;
+  number: string | null;
+  contractEnded: Date | null;
 }
