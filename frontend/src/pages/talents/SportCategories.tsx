@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import DashboardRightSidebar from "../../components/DashboardRighSiderbar";
 import { getSportsFor, isGender } from "../../config/sports";
-import "../../styles/MensSports.css";
+import '../../styles/MensSports.css'
 
 // Page « Choose the category » : /talents/men ou /talents/women
 export default function SportCategories() {
