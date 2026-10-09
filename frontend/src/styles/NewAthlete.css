@@ -1,0 +1,644 @@
+/* =========================
+   PAGE
+========================= */
+
+.new-athlete-page {
+  min-height: 100vh;
+  margin: calc(-1 * var(--content-pad-y))
+    calc(-1 * var(--content-pad-x));
+  background-color: #fff;
+}
+
+.new-athlete-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0;
+}
+
+.category-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+/* =========================
+   CONTENU
+========================= */
+
+.new-athlete-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1400px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.new-athlete-header {
+  padding: 30px 45px 20px;
+  background-color: #fff;
+}
+
+.new-athlete-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.new-athlete-header h1 {
+  margin: 0;
+  color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+.athlete{
+     font-size: 34px;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-weight: 700;
+  font-stretch: condensed;
+}
+
+/* =========================
+   CATEGORY
+========================= */
+.category-label {
+  display: block;
+  
+  color: #ED4C5C;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+ 
+}
+.category-select {
+  width: 200px;
+  height: 34px;
+  padding: 0 42px 0 18px;
+  border: 1px solid #D7DDEA;
+  border-radius: 8px;
+  background-color:#E0E0E0;
+  color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.category-select:focus {
+  box-shadow: 0 0 0 3px rgba(47, 71, 152, 0.12);
+}
+
+
+/* =========================
+   ZONE BLEUE
+========================= */
+
+.new-athlete-area {
+  flex: 1;
+  padding: 45px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   FORMULAIRE
+========================= */
+
+.new-athlete-form {
+  display: grid;
+  grid-template-columns: minmax(350px, 1fr) minmax(350px, 500px);
+  gap: 80px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   INFORMATIONS ATHLETE
+========================= */
+
+.athlete-information {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.player-name-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.player-name-section textarea {
+  width: 410px;
+  height: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+  resize: none;
+  border: none;
+  border-radius: 12px;
+
+  background: #E0E0E0;
+
+  color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+
+  outline: none;
+}
+
+.player-name-section textarea::placeholder {
+  color: #ED4C5C;
+  font-size: 65px;
+  font-weight: 800;
+  opacity: 1;
+  line-height: 1.1;
+  font-stretch: condensed;
+}
+.player-name-section label,
+.athlete-field label {
+  color: #ED4C5C;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.player-name-section input,
+.athlete-field input,
+.athlete-field select {
+  width: 100%;
+  height: 50px;
+  padding: 0 18px;
+  box-sizing: border-box;
+  border: 1px solid #D7DDEA;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #333;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 15px;
+  outline: none;
+}
+
+.player-name-section input:focus,
+.athlete-field input:focus,
+.athlete-field select:focus {
+  border-color: #2F4798;
+  box-shadow: 0 0 0 3px rgba(47, 71, 152, 0.08);
+}
+
+
+
+
+/* =========================
+   CLUB
+========================= */
+
+.athlete-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.club-selection {
+  min-height: 50px;
+  
+  display: flex;
+  align-items:start;
+  justify-content: start;
+  gap: 5px;
+  
+  border-radius: 12px;
+  background-color: #fff;
+ 
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 15px;
+  color: #E0E0E0;
+  
+}
+
+.choose-club-link {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #2F4798;
+  font-family: "Myriad Pro", sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  font-stretch: condensed;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.choose-club-link:hover {
+  color: #ED4C5C;
+}
+
+
+/* =========================
+   HEIGHT / WEIGHT
+========================= */
+
+.athlete-fields-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.athlete-fields-row .athlete-field {
+  gap: 4px; 
+}
+.input-with-unit {
+  position: relative;
+}
+
+.input-with-unit input {
+  width: 100px;
+  height: 38px; 
+  padding: 0 12px;
+  box-sizing: border-box;
+
+  border: 1px solid #D7DDEA;
+  border-radius: 8px;
+  background-color: #E0E0E0;
+  
+
+  color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  outline: none;
+}
+
+.input-with-unit input::placeholder {
+  color: #2F4798;
+  opacity: 1;
+}
+
+.athlete-field label {
+  display: block;
+  color: #ED4C5C;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+}
+.athlete-field input{
+    width: 140px;
+    height: 38px;
+    background-color: #E0E0E0;
+}
+.athlete-field select{
+    width: 100px;
+    height: 38px;
+    background-color: #E0E0E0;
+    color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+.athlete-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.athlete-details .athlete-field {
+  gap: 3px;
+}
+
+.athlete-field input::placeholder {
+  color: #2F4798;
+  opacity: 1;
+}
+/* =========================
+   PHOTO
+========================= */
+
+.athlete-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.athlete-photo-title {
+  margin-bottom: 20px;
+  color: #2F4798;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* Cercle / zone de photo */
+
+.athlete-photo {
+  position: relative;
+  width: 310px;
+  height: 420px;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid #D1DAF3;
+  border-radius: 155px 155px 35px 35px;
+  background-color: #F8FAFF;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.athlete-photo:hover {
+  border-color: #2F4798;
+  transform: translateY(-4px);
+}
+
+
+/* =========================
+   SILHOUETTE
+========================= */
+
+.athlete-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 75px;
+}
+
+.athlete-head {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background-color: #D8DEEC;
+}
+
+.athlete-body {
+  width: 180px;
+  height: 220px;
+  margin-top: 18px;
+  border-radius: 90px 90px 20px 20px;
+  background-color: #D8DEEC;
+}
+
+
+/* =========================
+   PLUS
+========================= */
+
+.photo-plus {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: #ED4C5C;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(237, 76, 92, 0.3);
+}
+
+.athlete-photo:hover .photo-plus {
+  background-color: #D42431;
+}
+
+
+/* =========================
+   PHOTO CHARGÉE
+========================= */
+
+.athlete-photo.has-photo {
+  background-color: #fff;
+}
+
+.athlete-photo.has-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* =========================
+   BOUTON UPLOAD
+========================= */
+
+.hidden-file-input {
+  display: none;
+}
+
+.upload-photo-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 22px;
+  background-color: #2F4798;
+  color: #fff;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.upload-photo-button:hover {
+  background-color: #253B83;
+  transform: translateY(-2px);
+}
+
+.photo-help {
+  margin: 8px 0 0;
+  color: #8C94A8;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 12px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.new-athlete-actions {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1100px;
+  margin: 45px auto 0;
+}
+
+.save-athlete-button {
+  min-width: 180px;
+  height: 50px;
+  padding: 0 25px;
+  border: none;
+  border-radius: 25px;
+  background-color: #ED4C5C;
+  color: #fff;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.save-athlete-button:hover {
+  background-color: #D42431;
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.new-athlete-layout > .dashboard-right {
+  padding-right: 30px;
+}
+
+
+/* =========================
+   TABLETTE
+========================= */
+
+@media (max-width: 1200px) {
+  .new-athlete-content {
+    min-height: auto;
+    max-width: none;
+  }
+
+  .new-athlete-form {
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+  }
+
+  .athlete-photo {
+    width: 260px;
+    height: 360px;
+  }
+
+  .athlete-body {
+    width: 150px;
+    height: 190px;
+  }
+
+  .new-athlete-layout > .dashboard-right {
+    padding: 25px var(--content-pad-x) 30px;
+  }
+}
+
+
+/* =========================
+   TABLETTE PETITE
+========================= */
+
+@media (max-width: 900px) {
+  .new-athlete-header {
+    padding: 25px var(--content-pad-x) 20px;
+  }
+
+  .new-athlete-area {
+    padding: 30px var(--content-pad-x);
+  }
+
+  .new-athlete-form {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+  }
+
+  .athlete-photo-section {
+    order: -1;
+  }
+
+  .new-athlete-actions {
+    max-width: 650px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .new-athlete-title-wrapper {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .new-athlete-title-wrapper h1 {
+    font-size: 25px;
+  }
+
+  .category-select {
+    width: 100%;
+  }
+
+  .new-athlete-area {
+    padding: 25px 20px 35px;
+  }
+
+  .new-athlete-form {
+    gap: 35px;
+  }
+
+  .athlete-fields-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .athlete-photo {
+    width: 230px;
+    height: 310px;
+  }
+
+  .athlete-placeholder {
+    padding-top: 50px;
+  }
+
+  .athlete-head {
+    width: 75px;
+    height: 75px;
+  }
+
+  .athlete-body {
+    width: 135px;
+    height: 160px;
+  }
+
+  .photo-plus {
+    width: 55px;
+    height: 55px;
+  }
+
+  .club-selection {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .new-athlete-actions {
+    margin-top: 30px;
+    justify-content: stretch;
+  }
+
+  .save-athlete-button {
+    width: 100%;
+  }
+}
