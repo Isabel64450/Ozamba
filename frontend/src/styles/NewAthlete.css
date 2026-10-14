@@ -348,15 +348,15 @@
   height: 420px;
   padding: 0;
   overflow: hidden;
-  border: 3px solid #D1DAF3;
+  box-shadow: none;
   border-radius: 155px 155px 35px 35px;
-  background-color: #F8FAFF;
+  background-color: white;
   cursor: pointer;
   transition: 0.2s ease;
 }
 
 .athlete-photo:hover {
-  border-color: #2F4798;
+ 
   transform: translateY(-4px);
 }
 
