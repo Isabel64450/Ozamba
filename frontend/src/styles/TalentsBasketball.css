@@ -314,3 +314,21 @@
         font-size: 15px;
     }
 }
+
+
+/* Initiales quand l'athlète n'a pas de photo */
+
+.basketball-athlete-initials {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #2F4798;
+}
