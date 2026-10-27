@@ -14,7 +14,8 @@ export type TalentListItem = {
 export type TalentDetail = TalentListItem & {
   gender: string | null;
   category: string | null;
-  height?: number | null;
+  status: string | null;   // ex. under_development
+  height?: number | null;  // en cm
   weight?: number | null;
   birthDate?: string | null;
 };

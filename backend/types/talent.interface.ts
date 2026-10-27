@@ -20,7 +20,8 @@ export interface TalentListItem extends RowDataPacket {
 export interface TalentDetail extends TalentListItem {
   gender: string | null;
   category: string | null;
-  height?: number | null;
+  status: string | null;
+  height?: number | null;  // en cm
   weight?: number | null;
   birthDate?: Date | null;
 }

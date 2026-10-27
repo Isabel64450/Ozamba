@@ -19,6 +19,17 @@ function formatDate(value: string | null | undefined): string | null {
   });
 }
 
+// 185 (cm) → « 1m85 », comme dans le formulaire New Athlete
+function formatHeight(cm: number | null | undefined): string | null {
+  if (!cm) return null;
+  return `${Math.floor(cm / 100)}m${String(cm % 100).padStart(2, "0")}`;
+}
+
+// under_development → « UNDER DEVELOPMENT »
+function formatStatus(status: string | null): string | null {
+  return status ? status.replace(/_/g, " ").toUpperCase() : null;
+}
+
 // Fiche d'un athlète : /talents/:gender/:sport/:id
 export default function AthleteProfile() {
   const navigate = useNavigate();
@@ -74,10 +85,11 @@ export default function AthleteProfile() {
     ? [
         { label: "CLUB", value: athlete.club },
         { label: "POSITION", value: athlete.position },
-        { label: "HEIGHT", value: athlete.height ? `${athlete.height} m` : null },
+        { label: "HEIGHT", value: formatHeight(athlete.height) },
         { label: "WEIGHT", value: athlete.weight ? `${athlete.weight} kg` : null },
         { label: "BIRTH DATE", value: formatDate(athlete.birthDate) },
         { label: "CONTRACT ENDS", value: formatDate(athlete.contractEnded) },
+        { label: "STATUS", value: formatStatus(athlete.status) },
       ].filter((detail) => detail.value)
     : [];
 
