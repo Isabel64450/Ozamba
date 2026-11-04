@@ -7,4 +7,11 @@ const api = axios.create({
   },
 });
 
+// Ajoute le token du login à chaque requête (routes protégées du back)
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
 export default api;

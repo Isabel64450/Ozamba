@@ -19,3 +19,15 @@ export type TalentDetail = TalentListItem & {
   weight?: number | null;
   birthDate?: string | null;
 };
+
+// Corps envoyé à POST /talents
+export type NewTalent = {
+  gender: string;            // men | women
+  category: string;          // slug du sport
+  firstName: string;
+  lastName: string;
+  position?: string | null;
+  birthDate?: string | null; // YYYY-MM-DD
+  height?: number | null;    // en cm
+  weight?: number | null;    // en kg
+};

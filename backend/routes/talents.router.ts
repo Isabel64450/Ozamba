@@ -1,4 +1,5 @@
 import { Router, type Request, type Response } from "express";
+import { requireRole } from "../middlewares/auth.middleware.js";
 
 interface AthletesQuery {
   gender?: string;
@@ -22,8 +23,8 @@ export function talentRouter(talentController: TalentController) {
   const router = Router();
 
   router.get("/",(req: Request<{}, {}, {}, AthletesQuery>, res: Response) => {talentController.getTalents(req, res);});
-  // TODO : réserver à l'admin quand le middleware d'auth existera
-  router.post("/", (req: Request<{}, {}, Record<string, unknown>>, res: Response) => {talentController.createTalent(req, res);});
+  // Création réservée aux rôles qui gèrent les athlètes (user stories 26 et 39)
+  router.post("/", requireRole("Argus", "Manager"), (req: Request<{}, {}, Record<string, unknown>>, res: Response) => {talentController.createTalent(req, res);});
   router.get("/:id", (req: Request<TalentParams>, res: Response) => {talentController.getTalentById(req, res);});
 
   return router;
