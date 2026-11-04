@@ -13,6 +13,7 @@ import DashboardLayout from './pages/DashboardLayout';
 import DashboardHome from './pages/dashboard/DashboardHome';
 import SportCategories from './pages/talents/SportCategories';
 import AthletesPage from './pages/talents/AthletesPage';
+ import NewAthlete from './pages/admin/NewAthlete';
 import AthleteProfile from './pages/talents/AthleteProfile';
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
         <Route path="/dashboard" element={<DashboardHome />} />
         <Route path="/talents/:gender" element={<SportCategories />} />
         <Route path="/talents/:gender/:sport" element={<AthletesPage />} />
-        <Route path="/talents/:gender/:sport/:id" element={<AthleteProfile />} />
+         <Route path="/talents/:gender/:sport/:id" element={<AthleteProfile />} />
+        <Route path="/new-athlete" element={<NewAthlete />} />
       </Route>
 
       <Route path="/" element={<Dashboard />} />
