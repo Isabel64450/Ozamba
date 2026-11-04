@@ -1,8 +1,14 @@
 import DashboardRightSidebar from "../../components/DashboardRighSiderbar";
+import { useNavigate } from "react-router-dom";
 import "../../styles/DasboardLayout.css";
 
-// Contenu de la page d'accueil du dashboard (affiché dans le layout via <Outlet />)
+
+
+
+
+
 export default function DashboardHome() {
+   const navigate = useNavigate();
   return (
          <div className="dashboard-layout">
             
@@ -13,11 +19,11 @@ export default function DashboardHome() {
                
             </div>
              <div className="dashboard-buttons"> 
-                <button className="dashboard-action-button"> 
+                <button className="dashboard-action-button" > 
                     <span className="action-icon">⚑</span> 
                     <span>ADD NEW CLUB</span> 
                 </button> 
-                <button className="dashboard-action-button"> 
+                <button className="dashboard-action-button" onClick={() => navigate("/new-athlete")}> 
                     <span className="action-icon">♙</span> 
                     <span>ADD A NEW ATHLETE</span> 
                 </button> 
