@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import DashboardRightSidebar from "../../components/DashboardRighSiderbar";
 import ArrowIcon from "../../components/ArrowIcon";
 import { SPORTS, isGender, isSport } from "../../config/sports";
-import { MOCK_ATHLETES } from "../../data/mockAthletes";
+import { getTalents } from "../../api/talents";
+import type { TalentListItem } from "../../types/talent";
 import "../../styles/MensSports.css";
 import "../../styles/TalentsBasketball.css";
 
@@ -13,22 +14,56 @@ export default function AthletesPage() {
   const navigate = useNavigate();
   const { gender, sport } = useParams();
   const [search, setSearch] = useState("");
+  const [result, setResult] = useState<{
+    key: string;
+    athletes: TalentListItem[];
+    error: string | null;
+  } | null>(null);
+
+  const isValidUrl =
+    isGender(gender) && isSport(sport) && SPORTS[sport].genders.includes(gender);
+
+  // Identifie la liste demandée : sert à savoir si le résultat en mémoire est le bon
+  const requestKey = `${gender}/${sport}`;
+
+  // Charge les athlètes à chaque changement de section ou de sport
+  useEffect(() => {
+    if (!isValidUrl || !gender || !sport) return;
+
+    let cancelled = false; // évite d'afficher une réponse arrivée après un changement de page
+
+    getTalents(gender, sport)
+      .then((athletes) => {
+        if (!cancelled) setResult({ key: requestKey, athletes, error: null });
+      })
+      .catch(() => {
+        if (!cancelled) setResult({ key: requestKey, athletes: [], error: "Unable to load athletes." });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [gender, sport, isValidUrl, requestKey]);
+
+  // Tant que le résultat ne correspond pas à la page affichée, on est en chargement
+  const current = result?.key === requestKey ? result : null;
+  const loading = current === null;
+  const athletes = current?.athletes ?? [];
+  const error = current?.error ?? null;
 
   // URL invalide, ou sport absent de cette section (ex. /talents/men/hockey)
-  if (!isGender(gender) || !isSport(sport) || !SPORTS[sport].genders.includes(gender)) {
+  if (!isValidUrl) {
     return <Navigate to={isGender(gender) ? `/talents/${gender}` : "/dashboard"} replace />;
   }
 
   const config = SPORTS[sport];
 
-  // Provisoire : filtre côté front sur les fausses données, remplacé plus tard par GET /athletes
-  const filteredAthletes = MOCK_ATHLETES
-    .filter((athlete) => athlete.gender === gender && athlete.sport === sport)
-    .filter((athlete) =>
-      `${athlete.name} ${athlete.position} ${athlete.team}`
-        .toLowerCase()
-        .includes(search.toLowerCase())
-    );
+  // La recherche reste côté front : la liste d'un sport est courte
+  const filteredAthletes = athletes.filter((athlete) =>
+    `${athlete.firstName} ${athlete.lastName} ${athlete.position ?? ""} ${athlete.club ?? ""}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
 
   return (
     <div className="mens-sports-page">
@@ -75,34 +110,44 @@ export default function AthletesPage() {
             <section className="basketball-athletes">
               <div className="basketball-athletes-header">
                 <h2>ATHLETES</h2>
-                <span>{filteredAthletes.length} ATHLETES</span>
+                {!loading && !error && <span>{filteredAthletes.length} ATHLETES</span>}
               </div>
 
               <div className="basketball-athletes-list">
-                {filteredAthletes.map((athlete) => (
+                {loading && <div className="basketball-empty">Loading…</div>}
+
+                {error && <div className="basketball-empty">{error}</div>}
+
+                {!loading && !error && filteredAthletes.map((athlete) => (
                   <button
                     key={athlete.id}
                     className="basketball-athlete"
                     onClick={() => navigate(`/talents/${gender}/${sport}/${athlete.id}`)}
                   >
-                    <span className="basketball-athlete-number">{athlete.number}</span>
+                    <span className="basketball-athlete-number">{athlete.number ?? "–"}</span>
 
                     <div className="basketball-athlete-image">
-                      <img src={athlete.image} alt={athlete.name} />
+                      {athlete.photo ? (
+                        <img src={athlete.photo} alt={`${athlete.firstName} ${athlete.lastName}`} />
+                      ) : (
+                        <span className="basketball-athlete-initials">
+                          {athlete.firstName.charAt(0)}{athlete.lastName.charAt(0)}
+                        </span>
+                      )}
                     </div>
 
                     <div className="basketball-athlete-info">
-                      <h3>{athlete.name}</h3>
-                      <span>{athlete.position}</span>
+                      <h3>{athlete.firstName} {athlete.lastName}</h3>
+                      <span>{athlete.position?.toUpperCase()}</span>
                     </div>
 
-                    <div className="basketball-athlete-team">{athlete.team}</div>
+                    <div className="basketball-athlete-team">{athlete.club?.toUpperCase()}</div>
 
                     <ArrowIcon className="basketball-athlete-arrow" />
                   </button>
                 ))}
 
-                {filteredAthletes.length === 0 && (
+                {!loading && !error && filteredAthletes.length === 0 && (
                   <div className="basketball-empty">No athlete found.</div>
                 )}
               </div>

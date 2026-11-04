@@ -1,0 +1,180 @@
+/* =========================
+   FICHE ATHLÈTE
+   Réutilise la mise en page de MensSports.css (header, colonne droite)
+========================= */
+
+.athlete-profile-area {
+  padding: 10px 45px 60px;
+}
+
+/* Nom du sport cliquable dans le fil d'Ariane (même style que .basketball-title) */
+.athlete-profile-sport {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #ED4C5C;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  font-stretch: condensed;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.athlete-profile-sport:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   CARTE
+========================= */
+
+.athlete-profile-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.athlete-profile-photo {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.athlete-profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.athlete-profile-initials {
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: #2F4798;
+}
+
+
+/* =========================
+   INFOS
+========================= */
+
+.athlete-profile-number {
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #D42431;
+}
+
+/* Prénom au-dessus, nom en grand */
+.athlete-profile-name {
+  margin: 6px 0 32px;
+  font-family: "Arial Narrow", "Myriad Pro", Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #111;
+}
+
+.athlete-profile-name span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #2F4798;
+}
+
+.athlete-profile-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.athlete-profile-detail {
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.athlete-profile-detail dt {
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #999;
+}
+
+.athlete-profile-detail dd {
+  margin: 6px 0 0;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+
+/* =========================
+   CHARGEMENT / ERREUR
+========================= */
+
+.athlete-profile-message {
+  padding: 40px 0;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 15px;
+  color: #999;
+  text-align: center;
+}
+
+.athlete-profile-link {
+  margin-top: 10px;
+  border: none;
+  background: none;
+  color: #2F4798;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+  .athlete-profile-area {
+    padding: 10px 20px 40px;
+  }
+
+  .athlete-profile-sport {
+    font-size: 26px;
+  }
+
+  .athlete-profile-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .athlete-profile-photo {
+    max-width: 260px;
+  }
+
+  .athlete-profile-name {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .athlete-profile-details {
+    grid-template-columns: 1fr;
+  }
+}

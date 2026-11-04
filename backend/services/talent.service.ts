@@ -3,6 +3,7 @@ interface TalentRepository {
     gender?: string;
     category?: string;
   }): Promise<unknown[]>;
+  getTalentById(id: number): Promise<unknown | null>;
 }
 
 interface TalentFilters {
@@ -19,6 +20,10 @@ class TalentService {
 
   async getTalents(filters: TalentFilters): Promise<unknown[]> {
     return await this.talentRepository.getTalents(filters);
+  }
+
+  async getTalentById(id: number): Promise<unknown | null> {
+    return await this.talentRepository.getTalentById(id);
   }
 }
 
