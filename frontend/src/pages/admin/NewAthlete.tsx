@@ -165,7 +165,7 @@ export default function NewAthlete() {
                         type="number"
                         placeholder="0m00"
                         value={form.height}
-                        onChange={handleChange}
+                        onChange={handleChange} 
                       />
                       
                     </div>
