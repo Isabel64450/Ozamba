@@ -16,6 +16,21 @@ export interface TalentListItem extends RowDataPacket {
   contractEnded: Date | null;
 }
 
+// Corps de POST /talents (formulaire New Athlete)
+export interface CreateTalentInput {
+  gender: string;      // men | women
+  category: string;    // slug du sport : basketball, football...
+  firstName: string;
+  lastName: string;
+  position?: string | null;
+  number?: string | null;
+  birthDate?: string | null;  // YYYY-MM-DD
+  height?: number | null;     // en cm
+  weight?: number | null;     // en kg
+  photo?: string | null;
+  clubId?: number | null;
+}
+
 // Fiche complète : toutes les colonnes de talents + le club du dernier contrat
 export interface TalentDetail extends TalentListItem {
   gender: string | null;
