@@ -15,12 +15,15 @@ interface TalentController {
     res: Response
   ): Promise<void>;
   getTalentById(req: Request<TalentParams>, res: Response): Promise<void>;
+  createTalent(req: Request<{}, {}, Record<string, unknown>>, res: Response): Promise<void>;
 }
 
 export function talentRouter(talentController: TalentController) {
   const router = Router();
 
   router.get("/",(req: Request<{}, {}, {}, AthletesQuery>, res: Response) => {talentController.getTalents(req, res);});
+  // TODO : réserver à l'admin quand le middleware d'auth existera
+  router.post("/", (req: Request<{}, {}, Record<string, unknown>>, res: Response) => {talentController.createTalent(req, res);});
   router.get("/:id", (req: Request<TalentParams>, res: Response) => {talentController.getTalentById(req, res);});
 
   return router;
