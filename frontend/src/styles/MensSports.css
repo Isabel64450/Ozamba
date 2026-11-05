@@ -203,6 +203,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease;
+  container-type: inline-size; /* permet de dimensionner le contenu en % de la largeur de la carte (cqw) */
 }
 
 .sport-card:hover {
@@ -218,17 +219,60 @@
   border-radius: 50%;
 }
 
-/* Carte sans image de fond (flag, hockey en attendant les visuels) */
+/* Carte sans image ni photo : fond bleu uni */
 .sport-card--no-image {
   background-color: #2F4798;
   border: none;
 }
 
+/* Export Figma : l'image a une bordure semi-transparente de 7px tout autour.
+   On l'agrandit pour que cette bordure sorte de la carte : 408 / (408 - 14) ≈ 103.6%, 627 / (627 - 14) ≈ 102.3% */
+.sport-card--figma {
+  background-size: 103.6% 102.3%;
+}
+
+/* Carte avec photo brute (pas d'export Figma) : voile sombre comme les autres cartes */
+.sport-card--photo {
+  position: relative;
+  border: none;
+}
+
+.sport-card--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: rgba(70, 70, 70, 0.6); /* voile gris comme sur les exports Figma */
+  backdrop-filter: saturate(0.4);          /* ternit les couleurs de la photo */
+}
+
+/* Proportions mesurées sur l'export Figma du volley (408px de large) */
+.sport-card--photo {
+  padding: 0;   /* les tailles en cqw se basent alors sur toute la largeur de la carte */
+  gap: 0;       /* l'espace est géré par le logo : cqw ne marche que sur les enfants de la carte */
+}
+
+.sport-card--photo .sport-card-label,
+.sport-card--photo .sport-card-icon-img {
+  position: relative; /* passent au-dessus du voile */
+}
+
+/* Logo au-dessus du titre : 21px / 408px ≈ 5.2cqw, puis ~21px d'espace avant les lettres */
+.sport-card-icon-img {
+  width: 5.2cqw;
+  height: auto;
+  margin-bottom: 3.5cqw;
+}
+
+/* Titre : lettres de 32px de haut sur une carte de 408px → ~11cqw en Roboto Condensed */
 .sport-card-label {
   color: #fff;
-  font-size: 26px;
+  font-family: "Myriad Pro", "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+  font-size: 11cqw;
   font-weight: 700;
-  letter-spacing: 1px;
+  font-stretch: condensed;
+  line-height: 0.935;
+  text-align: center;
 }
 
 

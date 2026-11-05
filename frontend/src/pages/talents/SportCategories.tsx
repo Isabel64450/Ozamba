@@ -48,20 +48,29 @@ export default function SportCategories() {
             <h1>CHOOSE THE CATEGORY</h1>
 
             <div className="sports-cards">
-              {filteredSports.map(([slug, sport]) => (
-                <button
-                  key={slug}
-                  className={`sport-card ${sport.image ? "" : "sport-card--no-image"}`}
-                  onClick={() => navigate(`/talents/${gender}/${slug}`)}
-                  style={sport.image ? { backgroundImage: `url("${sport.image}")` } : undefined}
-                  aria-label={sport.label}
-                >
-                  {/* Pas d'image fournie : on affiche le nom du sport */}
-                  {!sport.image && (
-                    <span className="sport-card-label">{sport.label.toUpperCase()}</span>
-                  )}
-                </button>
-              ))}
+              {filteredSports.map(([slug, sport]) => {
+                // Export Figma en priorité, sinon photo brute
+                const background = sport.image ?? sport.photo;
+                const variant = sport.image ? "sport-card--figma" : sport.photo ? "sport-card--photo" : "sport-card--no-image";
+
+                return (
+                  <button
+                    key={slug}
+                    className={`sport-card ${variant}`}
+                    onClick={() => navigate(`/talents/${gender}/${slug}`)}
+                    style={background ? { backgroundImage: `url("${background}")` } : undefined}
+                    aria-label={sport.label}
+                  >
+                    {/* Le logo et le titre ne sont pas dans l'image : on les affiche */}
+                    {!sport.image && sport.icon && (
+                      <img className="sport-card-icon-img" src={sport.icon} alt="" />
+                    )}
+                    {!sport.image && (
+                      <span className="sport-card-label">{sport.label.toUpperCase()}</span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

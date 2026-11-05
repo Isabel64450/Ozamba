@@ -5,7 +5,9 @@ export type SportSlug = "basketball" | "football" | "volleyball" | "flag" | "hoc
 
 export type SportConfig = {
   label: string;
-  image?: string;       // fond de la carte « Choose the category »
+  image?: string;       // fond de la carte « Choose the category » (export Figma, titre inclus)
+  photo?: string;       // photo brute : voile sombre et titre ajoutés en CSS
+  icon?: string;        // petit logo affiché au-dessus du titre (cartes sans export Figma)
   courts: string[];     // images des terrains (vide = pas encore fourni)
   positions: string[];  // postes proposés dans le filtre
   genders: Gender[];    // sections où ce sport existe
@@ -40,12 +42,16 @@ export const SPORTS: Record<SportSlug, SportConfig> = {
   },
   flag: {
     label: "Flag",
+    photo: "/flag.jpg",
+    icon: "/icons/flag-ball.svg",
     courts: [],
     positions: [],
     genders: ["women"],
   },
   hockey: {
     label: "Hockey",
+    photo: "/hockey.jpg",
+    icon: "/icons/hockey-stick.svg",
     courts: [],
     positions: [],
     genders: ["women"],

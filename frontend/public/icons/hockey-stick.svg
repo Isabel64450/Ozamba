@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <!-- Crosse de hockey et balle, en blanc -->
+  <path d="M19 1.5 9.5 19.5a3.2 3.2 0 0 1-6-.4" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <circle cx="18.5" cy="19.5" r="3.2" fill="#fff"/>
+</svg>
