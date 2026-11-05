@@ -642,3 +642,16 @@
     width: 100%;
   }
 }
+
+/* Message d'erreur renvoyé par l'API */
+.new-athlete-error {
+  color: #d64545;
+  font-size: 14px;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.save-athlete-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
